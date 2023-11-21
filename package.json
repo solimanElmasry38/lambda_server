@@ -2,16 +2,15 @@
   "name": "lambda",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.ts",
+    "dev": "nodemon ./src/index.ts",
     "db": "npx prisma format &&  npx prisma migrate dev --name init && npx prisma studio",
     "containers": " docker-compose up",
     "server": ""
   },
   "prisma": {
-    "schema": "./Src/prisma/schema.prisma"
+    "schema": "./src/prisma/schema.prisma"
   },
   "keywords": [],
   "author": "",
