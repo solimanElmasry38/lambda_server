@@ -12,10 +12,10 @@ services:
   #   depends_on: 
   #     - db
   DB:
-    image: postgres
+    image: postgres:16.1-alpine3.18
     restart: always
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
+    # volumes:
+    #   - ./data/db:/var/lib/postgresql/data
     ports:
       - 5432:5432
     environment:
@@ -32,13 +32,13 @@ services:
       - DB
 
   redisDB:
-    image: redis
+    image: redis:7.2.3-alpine3.18
     restart: always
     ports:
       - "6379:6379"
-    volumes:
-      - ./dаta:/root/redis
-      - ./data/redis.conf:/usr/local/etc/redis/redis.conf
+    # volumes:
+    #   - ./dаta:/root/redis
+    #   - ./data/redis.conf:/usr/local/etc/redis/redis.conf
     environment:
       - REDIS_PASSWORD=my-password
       - REDIS_PORT=6379

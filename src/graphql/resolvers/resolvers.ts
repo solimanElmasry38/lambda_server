@@ -1,8 +1,6 @@
+import { DateTimeResolver} from 'graphql-scalars'
 export const resolvers = {
-  Query: {
-    
-  },
-  Mutation:{
-    
-  },
+  DateTime: DateTimeResolver,
+  Query: {},
+  Mutation: {},
 };

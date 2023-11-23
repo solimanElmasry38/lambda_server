@@ -1,7 +1,9 @@
+# import * from "./types/user.gql"
 type Query {
- 
+    getUser:User,
 }
 type Mutation {
+ userCreate(input:UserInp):User,
  
   
 }
