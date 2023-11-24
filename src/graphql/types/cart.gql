@@ -1,0 +1,11 @@
+type User {
+  id: ID
+  user_name: String
+  email: String
+  password: String
+  img: String
+  is_admin: Boolean
+  joined_at: DateTime
+  last_update: DateTime
+  #   Cart: Cart
+}
