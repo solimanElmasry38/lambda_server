@@ -1,9 +1,14 @@
 # import * from "./types/user.gql"
+# import * from "./types/token.gql"
+input login{
+    email:String,
+    password:String
+}
 type Query {
     getUser:User,
 }
 type Mutation {
- userCreate(input:UserInp):User,
- 
-  
+ USER_CREATE(input:UserInp):String,
+ VERIFY_EMAIL(otp:String,id:ID):Token,
+ LOGIN(email:String,password:String):Token
 }

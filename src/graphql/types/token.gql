@@ -1,0 +1,6 @@
+type Token {
+    id:ID,
+    token:String,
+}
+
+
