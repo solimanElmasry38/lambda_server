@@ -3,4 +3,7 @@ type Token {
     token:String,
 }
 
-
+input auth{
+     id:ID,
+    token:String,
+}

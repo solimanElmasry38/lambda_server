@@ -5,10 +5,13 @@ input login{
     password:String
 }
 type Query {
-    getUser:User,
+    USERS_GET(input:auth):User,
 }
 type Mutation {
- USER_CREATE(input:UserInp):String,
+ USER_CREATE(user_name: String
+  email: String
+  img: String
+  password: String):String,
  VERIFY_EMAIL(otp:String,id:ID):Token,
  LOGIN(email:String,password:String):Token
 }

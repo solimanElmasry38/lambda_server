@@ -27,7 +27,7 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - 8980:8080
     depends_on:
       - DB
 
@@ -35,7 +35,7 @@ services:
     image: redis:7.2.3-alpine3.18
     restart: always
     ports:
-      - "6379:6379"
+      - "3333:6379"
     # volumes:
     #   - ./dаta:/root/redis
     #   - ./data/redis.conf:/usr/local/etc/redis/redis.conf
