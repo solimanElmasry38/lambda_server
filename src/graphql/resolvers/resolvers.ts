@@ -7,20 +7,28 @@ import { get_users } from "./user/querys/getUsers";
 export const resolvers = {
   DateTime: DateTimeResolver,
   Query: {
-    USERS_GET:(_, { input })=>{
-      const x = get_users(input)
-      console.log(x)
-      return x
+    USERS_GET: (_: any, { input }: any) => {
+      const x = get_users(input);
+      console.log(x);
+      return x;
     },
   },
   Mutation: {
-    USER_CREATE: (_, input, { test }) => {
+    USER_CREATE: (
+      _: any,
+      input: { user_name: string; email: string; password: string; img: any },
+      { test }: any
+    ) => {
       return create_user(input, test);
     },
-    VERIFY_EMAIL: (_, args, { test }) => {
+    VERIFY_EMAIL: (_: any, args: { id: string; otp: any }, { test }: any) => {
       return verify_email(args, test);
     },
-    LOGIN: (_, args, { test })=>{
+    LOGIN: (
+      _: any,
+      args: { email: string; password: string },
+      { test }: any
+    ) => {
       return login(args, test);
     },
   },

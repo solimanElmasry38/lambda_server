@@ -1,6 +1,6 @@
 import { verify, sign } from "jsonwebtoken";
 
-export const create_token = (id: string, secret: string) => {
+export const create_token = (id: string, secret: string):string => {
   if (!secret) {
     throw Error("secret key is required in create  token func");
   }

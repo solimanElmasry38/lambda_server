@@ -1,12 +1,11 @@
 import express from "express";
-require("dotenv").config();
 import { expressMiddleware } from "@apollo/server/express4";
 import { apollo_server, server } from "./conf/apollo";
-import './conf/passport'
-
 import passport from 'passport';
 import session from 'express-session';
 import cors from "cors";
+require("dotenv").config();
+import './conf/passport'
 
 (async function () {
   const app = express();
@@ -17,7 +16,6 @@ import cors from "cors";
       'GET',
       'POST',
     ],
-  
     allowedHeaders: [
       'Content-Type',
     ],
@@ -32,7 +30,7 @@ import cors from "cors";
   app.use(
     
     session({
-      secret: process.env.SESSION_SECRET,
+      secret: process.env.SESSION_SECRET!,
       resave: false,
       saveUninitialized: false,
       cookie: {
@@ -65,12 +63,12 @@ app.get(
   }
 );
 
-app.post('/api/logout', (_req, res) => {
-	res.clearCookie('connect.sid');  // clear the session cookie
-  session.clearCookie('connect.sid')
-  res.send("logout")
+// app.post('/api/logout', (_req, res) => {
+// 	res.clearCookie('connect.sid');  // clear the session cookie
+//   session.clearCookie('connect.sid')
+//   res.send("logout")
 
-});
+// });
 
 
   app.listen(process.env.PORT, () => {
