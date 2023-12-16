@@ -1,5 +1,8 @@
 # import * from "./types/user.gql"
 # import * from "./types/token.gql"
+type ids{
+    id:ID
+}
 input login{
     email:String,
     password:String
@@ -11,7 +14,7 @@ type Mutation {
  USER_CREATE(user_name: String
   email: String
   img: String
-  password: String):String,
+  password: String):ids,
  VERIFY_EMAIL(otp:String,id:ID):Token,
  LOGIN(email:String,password:String):Token
 }

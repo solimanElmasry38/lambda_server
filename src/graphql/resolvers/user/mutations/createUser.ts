@@ -8,13 +8,13 @@ import { send_email } from "../../../../utils/mail";
 export const create_user = async (
   { user_name, email, password, img },
   _contx: {}
-): Promise<string> => {
+): Promise<{}> => {
   try {
     await validate_inputs({ user_name, email, password, img }, userSchema);
     const hashedpass = await hash_password(password);
     try {
       const otp = generate_OTP();
-      await prisma.user.create({
+      const CreateUser = prisma.user.create({
         data: {
           user_name,
           email,
@@ -29,7 +29,8 @@ export const create_user = async (
                 <h4>your otp is ${otp}</h4>                
               `;
       send_email(subject, body, email);
-      return "verify email";
+      const [usr] = await prisma.$transaction([CreateUser]);
+      return {id:usr.id} ;
     } catch (err) {
       throw err;
     }
