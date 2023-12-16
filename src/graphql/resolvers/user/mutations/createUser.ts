@@ -1,4 +1,4 @@
-import { validate_inputs } from "../../../../utils/validateInputs"
+import { validate_inputs } from "../../../../utils/validateInputs";
 import { userSchema } from "../../../../types/CreateUserSchema";
 import { prisma } from "../../../../conf/prisma";
 import { hash_password } from "../../../../utils/passwordHash";
@@ -8,12 +8,9 @@ import { send_email } from "../../../../utils/mail";
 export const create_user = async (
   { user_name, email, password, img },
   _contx: {}
-) => {
-  const data = await validate_inputs(
-    { user_name, email, password, img },
-    userSchema
-  );
-  if (data) {
+): Promise<string> => {
+  try {
+    await validate_inputs({ user_name, email, password, img }, userSchema);
     const hashedpass = await hash_password(password);
     try {
       const otp = generate_OTP();
@@ -32,9 +29,11 @@ export const create_user = async (
                 <h4>your otp is ${otp}</h4>                
               `;
       send_email(subject, body, email);
-      return       "verify email"
+      return "verify email";
     } catch (err) {
       throw err;
     }
+  } catch (err) {
+    throw err;
   }
 };
