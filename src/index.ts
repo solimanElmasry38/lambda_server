@@ -6,6 +6,8 @@ import session from 'express-session';
 import cors from "cors";
 require("dotenv").config();
 import './conf/passport'
+const cookieParser = require("cookie-parser");
+
 
 (async function () {
   const app = express();
@@ -20,6 +22,7 @@ import './conf/passport'
       'Content-Type',
     ],
   };
+app.use(cookieParser());
   
   app.use(cors(corsOpts));
   app.use(express.json());
@@ -46,6 +49,7 @@ import './conf/passport'
 
 
   app.get("/", (_req, res) => {
+    console.log(_req.cookies)
     res.send("Hello World!");
   });
 
@@ -57,10 +61,12 @@ app.get('/auth/github', passport.authenticate('github'));
 app.get(
   '/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login' }),
-  function (_req, res) {
+  function (_req, _res) {
     // Successful authentication, redirect home.
-    res.send(res)
-    // res.redirect('/passport');
+    // console.log(_req.session.cookie())
+    
+    _res.send(_req.cookies["connect.sid"])
+    // res.redirect('http://localhost:5173');
   }
 );
 
