@@ -1,9 +1,5 @@
 type Token {
     id:ID,
-    token:String,
+    token:String
 }
 
-input auth{
-     id:ID,
-    token:String,
-}

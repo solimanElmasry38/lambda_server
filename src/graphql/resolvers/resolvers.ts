@@ -4,6 +4,15 @@ import { verify_email } from "./user/mutations/verifyEmail";
 import { login } from "./user/mutations/login";
 import { get_users } from "./user/querys/getUsers";
 
+
+
+
+// interface IUSER_CREATE{
+//   user_name: string; email: string; password: string; img: any 
+// }
+
+
+
 export const resolvers = {
   DateTime: DateTimeResolver,
   Query: {
@@ -12,11 +21,15 @@ export const resolvers = {
       console.log(x);
       return x;
     },
+    USER_GET: (_: any, { input }: any) => {
+      
+      return input;
+    },
   },
   Mutation: {
     USER_CREATE: (
       _: any,
-      input: { user_name: string; email: string; password: string; img: any },
+      {input},
       { test }: any
     ) => {
       return create_user(input, test);

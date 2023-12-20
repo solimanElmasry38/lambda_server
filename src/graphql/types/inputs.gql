@@ -1,0 +1,21 @@
+input AuthInp {
+     id:ID,
+    token:String,
+}
+
+input UserInp {
+  user_name: String                                                                                                
+  email: String
+  password: String
+  img: String
+}
+
+input LoginInp {
+	email: String, 
+	password: String
+}
+
+input verifyInp {
+    id:ID
+    otp:String
+}

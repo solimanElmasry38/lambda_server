@@ -10,9 +10,5 @@ type User {
   last_update: DateTime
 #   Cart: Cart
 }
-input UserInp {
-  user_name: String
-  email: String
-  password: String
-  img: String
-}
+
+                              

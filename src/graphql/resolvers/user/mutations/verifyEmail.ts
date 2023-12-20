@@ -8,7 +8,7 @@ export const verify_email = async ({ id, otp }, _contx: {}) => {
   // );
 
   try {
-     await prisma.user.findFirstOrThrow({
+    await prisma.user.findFirstOrThrow({
       where: {
         id,
         otp,
@@ -18,6 +18,15 @@ export const verify_email = async ({ id, otp }, _contx: {}) => {
     return {
       token: create_token(id, process.env.SECRET_ACCESS_TOKEN_KEY!),
       id,
+
+    // user_name: usr.user_name,
+    // email: usr,
+    // password: usr,
+    // otp: usr,
+    // img: usr,
+    // is_admin: usr,
+    // joined_at: usr,
+    // last_update: usr,
     };
   } catch (err) {
     throw err;
