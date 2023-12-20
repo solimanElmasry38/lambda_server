@@ -5,10 +5,16 @@ import { hash_password } from "../../../../utils/passwordHash";
 import { generate_OTP } from "../../../../utils/otp";
 import { send_email } from "../../../../utils/mail";
 
+export interface IcreateUser {
+  input: { user_name: string; email: string; password: string; img: string };
+}
+
 export const create_user = async (
-  { user_name, email, password, img },
+  { input }: IcreateUser,
   _contx: {}
-): Promise<{}> => {
+): Promise<{ id: string }> => {
+  const { user_name, email, password, img } = input;
+
   try {
     await validate_inputs({ user_name, email, password, img }, userSchema);
     const hashedpass = await hash_password(password);
@@ -30,7 +36,7 @@ export const create_user = async (
               `;
       send_email(subject, body, email);
       const [usr] = await prisma.$transaction([CreateUser]);
-      return {id:usr.id} ;
+      return { id: usr.id };
     } catch (err) {
       throw err;
     }
