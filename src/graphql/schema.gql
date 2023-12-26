@@ -7,7 +7,7 @@ type Query {
 	USER_GET(input: AuthInp): User
 }
 type Mutation {
-	USER_CREATE(input: UserInp):String, 
+	USER_CREATE(input: UserInp):Id, 
 	VERIFY_EMAIL(input: verifyInp): Token, 
 	LOGIN(input: LoginInp): Token
 }
