@@ -18,21 +18,23 @@ type Tusr = {
   joined_at: Date;
   last_update: Date;
 };
-export const get_users = async (
+export const get_user = async (
   { input }: IgetUsers,
   _contx: {}
-): Promise<Tusr[]> => {
+): Promise<number | Tusr> => {
   const { id, token } = input;
-  const admin = await prisma.user.findFirstOrThrow({
-    where: {
-      id,
-    },
-  });
-  if (validate_token(token, id)&&admin.is_admin) {
-    try {
-      const usr = await prisma.user.findMany();
 
-      return usr;
+  if (validate_token(token, id)) {
+    try {
+      const usr = await prisma.user.findFirst({
+        where: {
+          id,
+        },
+      });
+      if (usr) {
+        return usr;
+      }
+      return 0;
     } catch (err) {
       throw err;
     }

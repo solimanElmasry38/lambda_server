@@ -14,7 +14,6 @@ export const create_user = async (
   _contx: {}
 ): Promise<{ id: string }> => {
   const { user_name, email, password, img } = input;
-
   try {
     await validate_inputs({ user_name, email, password, img }, userSchema);
     const hashedpass = await hash_password(password);

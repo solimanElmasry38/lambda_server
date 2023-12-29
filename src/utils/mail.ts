@@ -21,14 +21,13 @@ export const send_email = async (
     });
 
     try {
-      let info = await transporter.sendMail({
+      await transporter.sendMail({
         from: "solyana38@gmail.com",
         to: to,
         subject: subject,
         text: "",
         html: body,
       });
-      console.log("Message sent: %s", info.messageId);
     } catch (err) {
       throw err;
     }
