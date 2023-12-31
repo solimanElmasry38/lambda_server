@@ -19,3 +19,8 @@ input verifyInp {
     id:ID
     otp:String
 }
+
+input offerInp {
+  usr_id:ID
+  usr_token:String
+}

@@ -1,13 +1,17 @@
 # import * from "./types/user.gql"
 # import * from "./types/token.gql"
+# import * from "./types/offer.gql"
 # import * from "./types/inputs.gql"
 
 type Query {
 	USERS_GET(input: AuthInp): [User],
-	USER_GET(input: AuthInp): User
+	USER_GET(input: AuthInp): User,
+	OFFERS_GET(input:offerInp): [Offer]
 }
 type Mutation {
 	USER_CREATE(input: UserInp):Id, 
 	VERIFY_EMAIL(input: verifyInp): Token, 
 	LOGIN(input: LoginInp): Token
+
+
 }

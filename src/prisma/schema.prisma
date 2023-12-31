@@ -38,3 +38,9 @@ model Cart {
   user     User      @relation(fields: [user_id], references: [id])
   Products Product[]
 }
+
+model Offer {
+  id   String @id @default(uuid())
+  img  String
+  name String
+}
