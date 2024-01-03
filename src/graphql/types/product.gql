@@ -1,0 +1,9 @@
+type Product {
+  id: ID
+  name: String
+  img: String
+  price: Int
+  count: Int
+  is_available: Boolean
+  desc: String
+}
