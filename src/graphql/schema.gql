@@ -4,12 +4,15 @@
 # import * from "./types/inputs.gql"
 # import * from "./types/product.gql"
 
-
+input prodInp{
+	id:ID
+}
 type Query {
 	USERS_GET(input: AuthInp): [User],
 	USER_GET(input: AuthInp): User,
 	OFFERS_GET(input:offerInp): [Offer],
-	PRODUCTS_GET:[Product]
+	PRODUCTS_GET:[Product],
+	PRODUCT_GET(input:prodInp):Product
 }
 type Mutation {
 	USER_CREATE(input: UserInp):Id, 
