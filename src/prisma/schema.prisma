@@ -28,12 +28,16 @@ model Product {
   count        Int
   is_available Boolean @default(true)
   desc         String
+  cart_id      String?
+  Cart         Cart?   @relation(fields: [cart_id], references: [id])
 }
 
 model Cart {
   id      String @id @default(uuid())
   user_id String @unique
   user    User   @relation(fields: [user_id], references: [id])
+
+  products Product[]
 }
 
 model Offer {
