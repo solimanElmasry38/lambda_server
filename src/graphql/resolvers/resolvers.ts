@@ -4,9 +4,10 @@ import { IverifyEmail, verify_email } from "./user/mutations/verifyEmail";
 import { Ilogin, login } from "./user/mutations/login";
 import { IgetUsers, get_users } from "./user/querys/getUsers";
 import { get_user } from "./user/querys/getUser";
-import { IgetOffers, get_offers } from "./offer/mutation/getOffers";
+import { IgetOffers, get_offers } from "./offer/query/getOffers";
 import { get_products } from "./product/querys/getProducts";
 import { IgetProduct, get_product } from "./product/querys/getProduct";
+import { add_to_cart } from "./cart/mutation/addToCart";
 
 export const resolvers = {
   DateTime: DateTimeResolver,
@@ -26,5 +27,7 @@ export const resolvers = {
       verify_email(args, contx),
 
     LOGIN: (_: any, args: Ilogin, contx: {}) => login(args, contx),
+
+    ADD_TO_CART:(_: any, args, contx: {})=>add_to_cart(args,contx)
   },
 };

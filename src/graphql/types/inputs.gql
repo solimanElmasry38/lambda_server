@@ -24,3 +24,9 @@ input offerInp {
   usr_id:ID
   usr_token:String
 }
+
+input AddCrtInp {
+  usr_id: ID
+  token: String
+  product_id: ID
+}
