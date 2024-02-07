@@ -1,3 +1,4 @@
+# import * from "./cart.gql"
 scalar DateTime
 type User {
   id: ID
@@ -8,7 +9,7 @@ type User {
   is_admin: Boolean
   joined_at: DateTime
   last_update: DateTime
-#   Cart: Cart
+  Cart: Cart
 }
 
                               

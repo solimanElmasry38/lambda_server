@@ -1,0 +1,6 @@
+# import * from "./product.gql"
+type category {
+	name:String
+	id:ID
+	product:[Product]
+}

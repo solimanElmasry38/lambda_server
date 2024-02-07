@@ -4,9 +4,11 @@ import { IverifyEmail, verify_email } from "./user/mutations/verifyEmail";
 import { Ilogin, login } from "./user/mutations/login";
 import { IgetUsers, get_users } from "./user/querys/getUsers";
 import { get_user } from "./user/querys/getUser";
-import { IgetOffers, get_offers } from "./offer/mutation/getOffers";
+import { IgetOffers, get_offers } from "./offer/query/getOffers";
 import { get_products } from "./product/querys/getProducts";
 import { IgetProduct, get_product } from "./product/querys/getProduct";
+import { add_to_cart } from "./cart/mutation/addToCart";
+import { get_category } from "./Category/query/getCategory";
 
 export const resolvers = {
   DateTime: DateTimeResolver,
@@ -15,7 +17,8 @@ export const resolvers = {
     USER_GET: (_: any,  args : IgetUsers,contx: {}) =>get_user(args,contx),
     OFFERS_GET:(_: any, args: IgetOffers, contx: {})=>get_offers(args, contx),
     PRODUCTS_GET:()=> get_products(),
-    PRODUCT_GET:(_: any, args:IgetProduct, contx: {})=>get_product(args,contx)
+    PRODUCT_GET:(_: any, args:IgetProduct, contx: {})=>get_product(args,contx),
+    GET_CATEGORY:(_: any, args:any, contx: {})=>get_category(args,contx)
   },
 
   Mutation: {
@@ -26,5 +29,7 @@ export const resolvers = {
       verify_email(args, contx),
 
     LOGIN: (_: any, args: Ilogin, contx: {}) => login(args, contx),
+
+    ADD_TO_CART:(_: any, args, contx: {})=>add_to_cart(args,contx)
   },
 };

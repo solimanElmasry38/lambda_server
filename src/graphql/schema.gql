@@ -3,21 +3,24 @@
 # import * from "./types/offer.gql"
 # import * from "./types/inputs.gql"
 # import * from "./types/product.gql"
+# import * from "./types/category.gql"
 
-input prodInp{
-	id:ID
-}
+
+
+
 type Query {
 	USERS_GET(input: AuthInp): [User],
 	USER_GET(input: AuthInp): User,
 	OFFERS_GET(input:offerInp): [Offer],
 	PRODUCTS_GET:[Product],
-	PRODUCT_GET(input:prodInp):Product
+	PRODUCT_GET(input:prodInp):Product,
+	GET_CATEGORY(input:CategInp):category
 }
 type Mutation {
 	USER_CREATE(input: UserInp):Id, 
 	VERIFY_EMAIL(input: verifyInp): Token, 
-	LOGIN(input: LoginInp): Token
+	LOGIN(input: LoginInp): Token,
+	ADD_TO_CART(input: AddCrtInp):String
 
 
 }

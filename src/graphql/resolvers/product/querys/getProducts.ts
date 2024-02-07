@@ -3,13 +3,13 @@ import { prisma } from "../../../../conf/prisma";
 
 
 type Tproduct = {
-    id: string
-    name: string
-    img: string
-    price: number
-    count: number
-    is_available: boolean
-    desc: string
+  id: string
+  name: string
+  img: string
+  price: number
+  count: number
+  is_available: boolean
+  desc: string
 };
 export const get_products = async (): Promise<number | Tproduct[]> => {
  
