@@ -8,10 +8,7 @@ import { IgetOffers, get_offers } from "./offer/query/getOffers";
 import { get_products } from "./product/querys/getProducts";
 import { IgetProduct, get_product } from "./product/querys/getProduct";
 import { add_to_cart } from "./cart/mutation/addToCart";
-<<<<<<< HEAD
 import { get_category } from "./Category/query/getCategory";
-=======
->>>>>>> 6d52b670330c402d64b95bb030d15a0ec7f14a95
 
 export const resolvers = {
   DateTime: DateTimeResolver,
