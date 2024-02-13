@@ -37,6 +37,11 @@ input CategInp {
   usr_token:String
 }
 
+input CategsInp {
+  usr_id:ID
+  usr_token:String
+}
+
 input prodInp{
 	id:ID
 }

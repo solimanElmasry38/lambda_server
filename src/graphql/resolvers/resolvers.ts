@@ -9,6 +9,7 @@ import { get_products } from "./product/querys/getProducts";
 import { IgetProduct, get_product } from "./product/querys/getProduct";
 import { add_to_cart } from "./cart/mutation/addToCart";
 import { get_category } from "./Category/query/getCategory";
+import { get_categorys } from "./Category/query/getCategorys";
 
 export const resolvers = {
   DateTime: DateTimeResolver,
@@ -18,7 +19,8 @@ export const resolvers = {
     OFFERS_GET:(_: any, args: IgetOffers, contx: {})=>get_offers(args, contx),
     PRODUCTS_GET:()=> get_products(),
     PRODUCT_GET:(_: any, args:IgetProduct, contx: {})=>get_product(args,contx),
-    GET_CATEGORY:(_: any, args:any, contx: {})=>get_category(args,contx)
+    GET_CATEGORY:(_: any, args:any, contx: {})=>get_category(args,contx),
+    GET_CATEGORYS:(_: any, args:any, contx: {})=>get_categorys(args,contx),
   },
 
   Mutation: {

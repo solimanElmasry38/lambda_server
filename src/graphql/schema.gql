@@ -14,7 +14,9 @@ type Query {
 	OFFERS_GET(input:offerInp): [Offer],
 	PRODUCTS_GET:[Product],
 	PRODUCT_GET(input:prodInp):Product,
-	GET_CATEGORY(input:CategInp):category
+	GET_CATEGORY(input:CategInp):category,
+	GET_CATEGORYS(input:CategsInp):[category],
+
 }
 type Mutation {
 	USER_CREATE(input: UserInp):Id, 
