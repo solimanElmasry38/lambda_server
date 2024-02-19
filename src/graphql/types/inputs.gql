@@ -45,3 +45,14 @@ input CategsInp {
 input prodInp{
 	id:ID
 }
+
+input prodsInp{
+  filter: String
+  orderByName:Sort
+  byCategory:String
+
+}
+enum Sort {
+  asc
+  desc
+}

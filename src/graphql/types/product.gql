@@ -1,3 +1,4 @@
+# import * from "./category.gql"
 type Product {
   id: ID
   name: String
@@ -6,4 +7,6 @@ type Product {
   count: Int
   is_available: Boolean
   desc: String
+  categorys:category
+  # Products_count:Int
 }
