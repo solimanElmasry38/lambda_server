@@ -19,6 +19,8 @@ model User {
   joined_at   DateTime    @default(now())
   last_update DateTime    @updatedAt
   Cart        CartItems[]
+
+  // Rating Rating[]
 }
 
 model Product {
@@ -32,6 +34,16 @@ model Product {
   cartItems    CartItems[]
   category_id  String?
   categorys    Category?   @relation(fields: [category_id], references: [id], name: "CategoryName")
+  ratings      Rating[]
+}
+
+model Rating {
+  id         String  @id @default(uuid())
+  reating    Int
+  // user_id    String
+  // user       User    @relation(fields: [user_id], references: [id])
+  product_id String  @unique
+  product    Product @relation(fields: [product_id], references: [id])
 }
 
 model CartItems {

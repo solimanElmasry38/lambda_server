@@ -10,6 +10,7 @@ import { IgetProduct, get_product } from "./product/querys/getProduct";
 import { add_to_cart } from "./cart/mutation/addToCart";
 import { get_category } from "./Category/query/getCategory";
 import { get_categorys } from "./Category/query/getCategorys";
+import { create_raeting } from "./reating/mutation/CreateRaeting";
 
 export const resolvers = {
   DateTime: DateTimeResolver,
@@ -32,6 +33,7 @@ export const resolvers = {
 
     LOGIN: (_: any, args: Ilogin, contx: {}) => login(args, contx),
 
-    ADD_TO_CART:(_: any, args, contx: {})=>add_to_cart(args,contx)
+    ADD_TO_CART:(_: any, args, contx: {})=>add_to_cart(args,contx),
+    RATE_PRODUCT:(_: any, args, contx: {})=>create_raeting(args,contx)
   },
 };

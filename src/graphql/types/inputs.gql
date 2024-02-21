@@ -56,3 +56,8 @@ enum Sort {
   asc
   desc
 }
+
+input ReatingInp{
+  reating:Int
+  product_id:String
+}
