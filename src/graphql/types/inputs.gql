@@ -60,4 +60,5 @@ enum Sort {
 input ReatingInp{
   reating:Int
   product_id:String
+  user_id:String
 }

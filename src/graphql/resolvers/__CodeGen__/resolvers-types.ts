@@ -155,6 +155,7 @@ export type QueryUser_GetArgs = {
 export type ReatingInp = {
   product_id?: InputMaybe<Scalars['String']['input']>;
   reating?: InputMaybe<Scalars['Int']['input']>;
+  user_id?: InputMaybe<Scalars['String']['input']>;
 };
 
 export enum Sort {

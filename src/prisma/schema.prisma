@@ -20,7 +20,7 @@ model User {
   last_update DateTime    @updatedAt
   Cart        CartItems[]
 
-  // Rating Rating[]
+  Rating Rating[]
 }
 
 model Product {
@@ -38,12 +38,13 @@ model Product {
 }
 
 model Rating {
-  id         String  @id @default(uuid())
   reating    Int
-  // user_id    String
-  // user       User    @relation(fields: [user_id], references: [id])
-  product_id String  @unique
+  user_id    String
+  user       User    @relation(fields: [user_id], references: [id])
+  product_id String
   product    Product @relation(fields: [product_id], references: [id])
+
+  @@id([user_id, product_id])
 }
 
 model CartItems {
