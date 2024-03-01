@@ -43,6 +43,10 @@ export type CategsInp = {
   usr_token?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type GetReviewsInp = {
+  Product_id?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type Id = {
   __typename?: 'Id';
   id?: Maybe<Scalars['ID']['output']>;
@@ -110,6 +114,7 @@ export type Query = {
   __typename?: 'Query';
   GET_CATEGORY?: Maybe<Category>;
   GET_CATEGORYS?: Maybe<Array<Maybe<Category>>>;
+  GET_PRODUCT_REVIEWS?: Maybe<Review>;
   OFFERS_GET?: Maybe<Array<Maybe<Offer>>>;
   PRODUCTS_GET?: Maybe<Array<Maybe<Product>>>;
   PRODUCT_GET?: Maybe<Product>;
@@ -125,6 +130,11 @@ export type QueryGet_CategoryArgs = {
 
 export type QueryGet_CategorysArgs = {
   input?: InputMaybe<CategsInp>;
+};
+
+
+export type QueryGet_Product_ReviewsArgs = {
+  input?: InputMaybe<GetReviewsInp>;
 };
 
 
@@ -211,6 +221,11 @@ export type ProdsInp = {
   orderByName?: InputMaybe<Sort>;
 };
 
+export type Review = {
+  __typename?: 'review';
+  review?: Maybe<Scalars['Int']['output']>;
+};
+
 export type VerifyInp = {
   id?: InputMaybe<Scalars['ID']['input']>;
   otp?: InputMaybe<Scalars['String']['input']>;
@@ -295,6 +310,7 @@ export type ResolversTypes = ResolversObject<{
   CategInp: CategInp;
   CategsInp: CategsInp;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
+  GetReviewsInp: GetReviewsInp;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Id: ResolverTypeWrapper<Id>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
@@ -313,6 +329,7 @@ export type ResolversTypes = ResolversObject<{
   offerInp: OfferInp;
   prodInp: ProdInp;
   prodsInp: ProdsInp;
+  review: ResolverTypeWrapper<Review>;
   verifyInp: VerifyInp;
 }>;
 
@@ -325,6 +342,7 @@ export type ResolversParentTypes = ResolversObject<{
   CategInp: CategInp;
   CategsInp: CategsInp;
   DateTime: Scalars['DateTime']['output'];
+  GetReviewsInp: GetReviewsInp;
   ID: Scalars['ID']['output'];
   Id: Id;
   Int: Scalars['Int']['output'];
@@ -342,6 +360,7 @@ export type ResolversParentTypes = ResolversObject<{
   offerInp: OfferInp;
   prodInp: ProdInp;
   prodsInp: ProdsInp;
+  review: Review;
   verifyInp: VerifyInp;
 }>;
 
@@ -389,6 +408,7 @@ export type ProductResolvers<ContextType = any, ParentType extends ResolversPare
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   GET_CATEGORY?: Resolver<Maybe<ResolversTypes['category']>, ParentType, ContextType, Partial<QueryGet_CategoryArgs>>;
   GET_CATEGORYS?: Resolver<Maybe<Array<Maybe<ResolversTypes['category']>>>, ParentType, ContextType, Partial<QueryGet_CategorysArgs>>;
+  GET_PRODUCT_REVIEWS?: Resolver<Maybe<ResolversTypes['review']>, ParentType, ContextType, Partial<QueryGet_Product_ReviewsArgs>>;
   OFFERS_GET?: Resolver<Maybe<Array<Maybe<ResolversTypes['Offer']>>>, ParentType, ContextType, Partial<QueryOffers_GetArgs>>;
   PRODUCTS_GET?: Resolver<Maybe<Array<Maybe<ResolversTypes['Product']>>>, ParentType, ContextType, Partial<QueryProducts_GetArgs>>;
   PRODUCT_GET?: Resolver<Maybe<ResolversTypes['Product']>, ParentType, ContextType, Partial<QueryProduct_GetArgs>>;
@@ -422,6 +442,11 @@ export type CategoryResolvers<ContextType = any, ParentType extends ResolversPar
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type ReviewResolvers<ContextType = any, ParentType extends ResolversParentTypes['review'] = ResolversParentTypes['review']> = ResolversObject<{
+  review?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type Resolvers<ContextType = any> = ResolversObject<{
   Cart?: CartResolvers<ContextType>;
   DateTime?: GraphQLScalarType;
@@ -433,5 +458,6 @@ export type Resolvers<ContextType = any> = ResolversObject<{
   Token?: TokenResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
   category?: CategoryResolvers<ContextType>;
+  review?: ReviewResolvers<ContextType>;
 }>;
 
