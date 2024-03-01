@@ -20,25 +20,25 @@ model User {
   last_update DateTime    @updatedAt
   Cart        CartItems[]
 
-  Rating Rating[]
+  Rating ProductReview[]
 }
 
 model Product {
-  id           String      @id @default(uuid())
+  id           String          @id @default(uuid())
   name         String
-  img          String      @default("https://sudbury.legendboats.com/resource/defaultProductImage")
+  img          String          @default("https://sudbury.legendboats.com/resource/defaultProductImage")
   price        Int
   count        Int
-  is_available Boolean     @default(true)
+  is_available Boolean         @default(true)
   desc         String
   cartItems    CartItems[]
   category_id  String?
-  categorys    Category?   @relation(fields: [category_id], references: [id], name: "CategoryName")
-  ratings      Rating[]
+  categorys    Category?       @relation(fields: [category_id], references: [id], name: "CategoryName")
+  ratings      ProductReview[]
 }
 
-model Rating {
-  reating    Int
+model ProductReview {
+  review     Int
   user_id    String
   user       User    @relation(fields: [user_id], references: [id])
   product_id String

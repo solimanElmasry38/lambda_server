@@ -4,6 +4,7 @@
 # import * from "./types/inputs.gql"
 # import * from "./types/product.gql"
 # import * from "./types/category.gql"
+# import * from "./types/review.gql"
 
 
 
@@ -16,6 +17,7 @@ type Query {
 	PRODUCT_GET(input:prodInp):Product,
 	GET_CATEGORY(input:CategInp):category,
 	GET_CATEGORYS(input:CategsInp):[category],
+	GET_PRODUCT_REVIEWS(input:GetReviewsInp):review
 
 
 }

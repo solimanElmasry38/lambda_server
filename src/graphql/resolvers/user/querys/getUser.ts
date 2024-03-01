@@ -1,4 +1,5 @@
 import { prisma } from "../../../../conf/prisma";
+// import  redisClient  from "../../../../conf/redis";  
 import { validate_token } from "../../../../utils/token";
 
 export interface IgetUsers {
@@ -32,6 +33,7 @@ export const get_user = async (
         },
       });
       if (usr) {
+        // await redisClient.set("usr_data", JSON.stringify(usr));
         return usr;
       }
       return 0;
