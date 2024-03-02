@@ -4,6 +4,11 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { loadSchemaSync } from "@graphql-tools/load";
+
+
+
+
+
 const typeDefs = loadSchemaSync("../**/*.gql", {
   loaders: [new GraphQLFileLoader()],
 });
@@ -13,6 +18,7 @@ const schema = makeExecutableSchema({
 });
 export const server = new ApolloServer({
   schema,
+ 
   
 });
 
@@ -28,3 +34,7 @@ export const apollo_server = async () => {
     context: constext,
   });
 };
+
+
+
+
