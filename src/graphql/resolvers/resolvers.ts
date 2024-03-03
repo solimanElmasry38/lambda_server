@@ -23,7 +23,7 @@ export const resolvers = {
     PRODUCT_GET: (_: any, args: IgetProduct, contx: {}) =>
       get_product(args, contx),
     GET_CATEGORY: (_: any, args: any, contx: {}) => get_category(args, contx),
-    GET_CATEGORYS: (_: any, args: any, contx: {}) => get_categorys(args, contx),
+    GET_CATEGORYS: (_: any, _args: any, contx: {}) => get_categorys( contx),
     GET_PRODUCT_REVIEWS: (_: any, args: any, contx: {}) =>
       get_review(args, contx),
   },

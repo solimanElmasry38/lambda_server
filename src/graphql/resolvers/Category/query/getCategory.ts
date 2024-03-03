@@ -1,5 +1,5 @@
 import { prisma } from "../../../../conf/prisma";
-import { validate_token } from "../../../../utils/token";
+
 export interface IgetCategory {
   input: {
     Categ_name: string;
@@ -18,9 +18,9 @@ export interface IgetCategory {
 // };
 
 export const get_category = async ({ input }: IgetCategory, _contx: {}) => {
-  const { Categ_name, usr_id, usr_token } = input;
+  const { Categ_name} = input;
 
-  if (validate_token(usr_token, usr_id)) {
+  
     try {
       const result = await prisma.category.findFirstOrThrow({
         where: {
@@ -36,7 +36,5 @@ export const get_category = async ({ input }: IgetCategory, _contx: {}) => {
     } catch (err) {
       throw err;
     }
-  } else {
-    throw new Error("unauthrized");
-  }
+  
 };

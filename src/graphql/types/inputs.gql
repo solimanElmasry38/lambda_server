@@ -33,14 +33,10 @@ input AddCrtInp {
 
 input CategInp {
   Categ_name:String
-  usr_id:ID
-  usr_token:String
+  
 }
 
-input CategsInp {
-  usr_id:ID
-  usr_token:String
-}
+
 
 input prodInp{
 	id:ID

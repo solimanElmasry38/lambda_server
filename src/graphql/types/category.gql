@@ -2,5 +2,6 @@
 type category {
 	name:String
 	id:ID
+	img:String
 	product:[Product]
 }

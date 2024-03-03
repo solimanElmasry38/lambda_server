@@ -16,7 +16,7 @@ type Query {
 	PRODUCTS_GET(input:prodsInp):[Product],
 	PRODUCT_GET(input:prodInp):Product,
 	GET_CATEGORY(input:CategInp):category,
-	GET_CATEGORYS(input:CategsInp):[category],
+	GET_CATEGORYS:[category],
 	GET_PRODUCT_REVIEWS(input:GetReviewsInp):review
 
 

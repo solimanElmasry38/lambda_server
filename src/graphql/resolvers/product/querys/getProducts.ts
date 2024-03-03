@@ -23,9 +23,9 @@ export const get_products = async ({ input }, _contxt): Promise<Tproduct[]> => {
       include:{categorys:true}
     });
     // console.log(product)
-    const counttt=await prisma.product.count()
-    console.log("count is ")
-    console.log(counttt)
+    // const counttt=await prisma.product.count()
+    // console.log("count is ")
+    // console.log(counttt)
     return product;
   } catch (err) {
     throw err;

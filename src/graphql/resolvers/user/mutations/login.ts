@@ -18,6 +18,7 @@ type Tlogin = {
 
 export const login = async ({ input }: Ilogin, _contx: {}): Promise<Tlogin> => {
   const { email, password } = input;
+  // console.log(email, password )
   // const data = await validate_inputs({ email, password }, userSchema);
   if (true /*data*/) {
     try {

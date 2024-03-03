@@ -63,6 +63,7 @@ model Offer {
 
 model Category {
   id      String    @id @default(uuid())
+  img     String
   name    String
   product Product[] @relation(name: "CategoryName")
 }
