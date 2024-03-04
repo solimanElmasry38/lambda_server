@@ -18,7 +18,7 @@ const schema = makeExecutableSchema({
 });
 export const server = new ApolloServer({
   schema,
- 
+  
   
 });
 
@@ -30,11 +30,23 @@ export const apollo_server = async () => {
       res,
     };
   };
-  await startStandaloneServer(server, {
-    context: constext,
-  });
+
+let prot:number|undefined=Number(process.env.PORT ?? 4000);
+
+    await startStandaloneServer(server, {
+      context: constext,
+      listen: {
+        port:prot,
+      },
+    });
+  
+  
 };
 
 
+// // Start the server on the specified port
+// server.start({ port: PORT }).then(({ url }) => {
+//   console.log(`🚀 Server ready at ${url}`);
+// });
 
 

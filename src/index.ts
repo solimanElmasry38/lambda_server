@@ -9,6 +9,7 @@ import './conf/passport'
 const cookieParser = require("cookie-parser");
 
 
+
 (async function () {
   const app = express();
   const corsOpts = {
@@ -78,8 +79,8 @@ app.get(
 // });
 
 
-  app.listen(process.env.PORT, () => {
-    console.log(`🚀 Express ready at http://localhost:${process.env.PORT}`);
+  app.listen(process.env.EX_PORT, () => {
+    console.log(`🚀 Express ready at http://localhost:${process.env.EX_PORT}`);
   });
 })();
 
