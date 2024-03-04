@@ -17,15 +17,16 @@ type Query {
 	PRODUCT_GET(input:prodInp):Product,
 	GET_CATEGORY(input:CategInp):category,
 	GET_CATEGORYS:[category],
-	GET_PRODUCT_REVIEWS(input:GetReviewsInp):review
+	GET_PRODUCT_REVIEWS(input:GetReviewsInp):review,
+	GET_CART_PRODUCTS(input:getCartInp):[Product]
 
 
 }
 type Mutation {
+	ADD_TO_CART(input:addToCartInp):String,
 	USER_CREATE(input: UserInp):Id, 
 	VERIFY_EMAIL(input: verifyInp): Token, 
 	LOGIN(input: LoginInp): Token,
-	ADD_TO_CART(input: AddCrtInp):String,
 	RATE_PRODUCT(input:ReatingInp):String
 
 

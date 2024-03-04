@@ -11,6 +11,7 @@ import { add_to_cart } from "./cart/mutation/addToCart";
 import { get_category } from "./Category/query/getCategory";
 import { get_categorys } from "./Category/query/getCategorys";
 import { get_review } from "./review/query/GetReview";
+import { get_cart_prodcuts } from "./cart/query/getCartProducts";
 
 export const resolvers = {
   DateTime: DateTimeResolver,
@@ -23,9 +24,12 @@ export const resolvers = {
     PRODUCT_GET: (_: any, args: IgetProduct, contx: {}) =>
       get_product(args, contx),
     GET_CATEGORY: (_: any, args: any, contx: {}) => get_category(args, contx),
-    GET_CATEGORYS: (_: any, _args: any, contx: {}) => get_categorys( contx),
+    GET_CATEGORYS: (_: any, _args: any, contx: {}) => get_categorys(contx),
     GET_PRODUCT_REVIEWS: (_: any, args: any, contx: {}) =>
       get_review(args, contx),
+
+      GET_CART_PRODUCTS: (_: any, args, contx: {}) =>
+      get_cart_prodcuts(args, contx),
   },
 
   Mutation: {
@@ -40,3 +44,5 @@ export const resolvers = {
     ADD_TO_CART: (_: any, args, contx: {}) => add_to_cart(args, contx),
   },
 };
+
+

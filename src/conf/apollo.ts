@@ -31,13 +31,13 @@ export const apollo_server = async () => {
     };
   };
 
-let prot:number|undefined=Number(process.env.PORT ?? 4000);
+// let prot:number|undefined=Number(process.env.PORT ?? 4000);
 
     await startStandaloneServer(server, {
       context: constext,
-      listen: {
-        port:prot,
-      },
+      // listen: {
+      //   port:prot,
+      // },
     });
   
   

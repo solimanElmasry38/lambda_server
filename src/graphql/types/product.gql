@@ -8,5 +8,6 @@ type Product {
   is_available: Boolean
   desc: String
   categorys:category
+  coun_in_cart:Int
   # Products_count:Int
 }

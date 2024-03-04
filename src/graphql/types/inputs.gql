@@ -62,3 +62,15 @@ input ReatingInp{
 input GetReviewsInp{
   Product_id:String
 }
+
+
+input getCartInp{
+  usr_id:String
+
+
+}
+input addToCartInp{
+  Product_id:String
+  usr_id:String
+ Product_count:Int
+}
