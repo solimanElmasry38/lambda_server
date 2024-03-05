@@ -12,6 +12,7 @@ import { get_category } from "./Category/query/getCategory";
 import { get_categorys } from "./Category/query/getCategorys";
 import { get_review } from "./review/query/GetReview";
 import { get_cart_prodcuts } from "./cart/query/getCartProducts";
+import { isAv } from "./cart/query/isAv";
 
 export const resolvers = {
   DateTime: DateTimeResolver,
@@ -30,6 +31,9 @@ export const resolvers = {
 
       GET_CART_PRODUCTS: (_: any, args, contx: {}) =>
       get_cart_prodcuts(args, contx),
+
+      IS_AVILABLE: (_: any, args, contx: {}) =>
+      isAv(args, contx),
   },
 
   Mutation: {

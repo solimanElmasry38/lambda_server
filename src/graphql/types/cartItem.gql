@@ -1,0 +1,5 @@
+# import * from "./product.gql"
+type CartItem{
+products:[Product]
+TotalProductInCart:Int
+}
