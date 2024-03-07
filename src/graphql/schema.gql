@@ -38,4 +38,13 @@ type Mutation {
 	RATE_PRODUCT(input:ReatingInp):String
 
 
+
 }
+type x{
+
+	home:String
+	price:Int
+}
+  type Subscription {
+    addToCart: x
+    }

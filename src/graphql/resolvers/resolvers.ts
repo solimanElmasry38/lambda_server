@@ -13,6 +13,8 @@ import { get_categorys } from "./Category/query/getCategorys";
 import { get_review } from "./review/query/GetReview";
 import { get_cart_prodcuts } from "./cart/query/getCartProducts";
 import { isAv } from "./cart/query/isAv";
+import { PubSub } from "graphql-subscriptions";
+export const pubSub = new PubSub();
 
 export const resolvers = {
   DateTime: DateTimeResolver,
@@ -46,6 +48,15 @@ export const resolvers = {
     LOGIN: (_: any, args: Ilogin, contx: {}) => login(args, contx),
 
     ADD_TO_CART: (_: any, args, contx: {}) => add_to_cart(args, contx),
+  },
+  Subscription: {
+    // newBlog subscription
+    addToCart: {
+      subscribe: () => {
+        console.log("pupsub")
+        return pubSub.asyncIterator("click")
+      },
+    },
   },
 };
 

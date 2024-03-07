@@ -1,4 +1,6 @@
 import { prisma } from "../../../../conf/prisma";
+import { pubSub } from "../../resolvers";
+
 
 export const add_to_cart = async ({ input }: any, _contx: {}) => {
   const { Product_id, usr_id } = input;
@@ -90,6 +92,13 @@ export const add_to_cart = async ({ input }: any, _contx: {}) => {
         const TotalProductInCart = cart?.product.reduce((total, item) => {
           return total + item.coun_in_cart;
         }, 0);
+        await pubSub.publish("click",  {
+          addToCart:{
+
+            home:"soly",
+            price:233
+          }
+        });
         return {
           availability:true,
           TotalProductInCart
