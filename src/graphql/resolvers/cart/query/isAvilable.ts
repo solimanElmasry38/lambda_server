@@ -1,6 +1,6 @@
 import { prisma } from "../../../../conf/prisma";
 
-export const isAv = async ({ input }, _ctx) => {
+export const is_avilable = async ({ input }, _ctx) => {
   const { productId } = input;
 
   try {

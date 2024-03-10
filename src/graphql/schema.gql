@@ -7,44 +7,39 @@
 # import * from "./types/review.gql"
 # import * from "./types/cartItem.gql"
 
-
-
-type addToCart{
-	availability:Boolean,
-                TotalProductInCart:Int
+type addToCart {
+  availability: Boolean
 }
-input IsAvInp{
-productId:String
+input IsAvInp {
+  productId: String
+}
+type CartCount {
+  ProductsInCart: Int
+}
+input getCartCountInp{
+  usr_id:String
 }
 type Query {
-		IS_AVILABLE(input:IsAvInp):Boolean,
-	USERS_GET(input: AuthInp): [User],
-	USER_GET(input: AuthInp): User,
-	OFFERS_GET(input:offerInp): [Offer],
-	PRODUCTS_GET(input:prodsInp):[Product],
-	PRODUCT_GET(input:prodInp):Product,
-	GET_CATEGORY(input:CategInp):category,
-	GET_CATEGORYS:[category],
-	GET_PRODUCT_REVIEWS(input:GetReviewsInp):review,
-	GET_CART_PRODUCTS(input:getCartInp):CartItem
-
-
+  IS_AVILABLE(input: IsAvInp): Boolean
+  USERS_GET(input: AuthInp): [User]
+  USER_GET(input: AuthInp): User
+  OFFERS_GET(input: offerInp): [Offer]
+  PRODUCTS_GET(input: prodsInp): [Product]
+  PRODUCT_GET(input: prodInp): Product
+  GET_CATEGORY(input: CategInp): category
+  GET_CATEGORYS: [category]
+  GET_PRODUCT_REVIEWS(input: GetReviewsInp): review
+  GET_CART_PRODUCTS(input: getCartInp): CartItem
+  GET_CART_COUNT(input:getCartCountInp):Int
 }
 type Mutation {
-	ADD_TO_CART(input:addToCartInp):addToCart,
-	USER_CREATE(input: UserInp):Id, 
-	VERIFY_EMAIL(input: verifyInp): Token, 
-	LOGIN(input: LoginInp): Token,
-	RATE_PRODUCT(input:ReatingInp):String
-
-
-
+  ADD_TO_CART(input: addToCartInp): addToCart
+  USER_CREATE(input: UserInp): Id
+  VERIFY_EMAIL(input: verifyInp): Token
+  LOGIN(input: LoginInp): Token
+  RATE_PRODUCT(input: ReatingInp): String
 }
-type x{
 
-	home:String
-	price:Int
+type Subscription {
+  ADD_TO_CART_SUB: CartCount
 }
-  type Subscription {
-    addToCart: x
-    }

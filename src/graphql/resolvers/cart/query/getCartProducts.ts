@@ -1,34 +1,41 @@
-
 import { prisma } from "../../../../conf/prisma";
+import { pubSub } from "../../resolvers";
 
 export const get_cart_prodcuts = async ({ input }, _contx) => {
-    const {usr_id}=input;
-
-    const cart = await prisma.cart.findFirst({
-        where:{
-            user_id:usr_id
-        },
-        include:{
-            product:true
-        }
+  const { usr_id } = input;
+  try {
+    const cart = await prisma.cart.findFirstOrThrow({
+      where: {
+        user_id: usr_id,
+      },
+      include: {
+        product: true,
+      },
     });
-    // console.log(JSON.stringify(products?.product));
-    // console.log(JSON.stringify(products?.product));
-    // const totalPrice = cart?.product.reduce((total, item) => {
-    //         const productPrice = item.price;
-    //         return total + item.coun_in_cart * productPrice;
-    //       }, 0);
 
+    const TotalProductInCart = cart?.product.reduce((total, item) => {
+      return total + item.coun_in_cart;
+    }, 0);
+    const allProductInCart = cart?.product.reduce((total, item) => {
+      return total + item.coun_in_cart;
+    }, 0);
 
-          const TotalProductInCart = cart?.product.reduce((total, item) => {
-                return total + item.coun_in_cart ;
-              }, 0);
+    await pubSub.publish("add_toCartSub", {
+      ADD_TO_CART_SUB: {
+        ProductsInCart: allProductInCart,
+      },
+    });
+    console.log(allProductInCart)
 
-    // console.log("cont is"+totalCount)
-    return{
-        products:cart?.product,
-        TotalProductInCart
-    } 
+    console.log("sub fired")
 
+    return {
+      products: cart?.product,
+      TotalProductInCart,
+    };
+  } catch (err) {
+    throw new Error("cart Is empty");
+  }
 };
+
 
