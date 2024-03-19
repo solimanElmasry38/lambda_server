@@ -1,0 +1,16 @@
+
+{
+  "endpoint": "api/morbid-chimp",
+
+  "configurationSets": {
+    "myapi": {
+      "includes": [
+        "./index.graphql",
+        "./index.ts"
+      ],
+      "output": {
+        "format": "graphql"
+      }
+    }
+  }
+}

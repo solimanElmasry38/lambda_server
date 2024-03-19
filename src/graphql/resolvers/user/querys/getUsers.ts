@@ -37,6 +37,6 @@ export const get_users = async (
       throw err;
     }
   } else {
-    throw new Error("unauthrized");
+    throw new Error("unauthrized not admin");
   }
 };
