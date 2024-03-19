@@ -38,6 +38,8 @@ type Mutation {
   VERIFY_EMAIL(input: verifyInp): Token
   LOGIN(input: LoginInp): Token
   RATE_PRODUCT(input: ReatingInp): String
+  REMOVE_PRODUCT(input:removeProdInp):String
+
 }
 
 type Subscription {

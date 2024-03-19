@@ -16,6 +16,7 @@ import { is_avilable } from "./cart/query/isAvilable";
 import { PubSub } from "graphql-subscriptions";
 import { add_to_cart_sub } from "./cart/subscribtion/addToCartSub";
 import { getCartCount } from "./cart/query/getCartCount";
+import { remove_product } from "./product/mutation/removeProduct";
 export const pubSub = new PubSub();
 
 export const resolvers = {
@@ -50,6 +51,8 @@ export const resolvers = {
     LOGIN: (_: any, args: Ilogin, contx: {}) => login(args, contx),
 
     ADD_TO_CART: (_: any, args, contx: {}) => add_to_cart(args, contx),
+    REMOVE_PRODUCT:(_: any, args, contx: {}) => remove_product(args, contx),
+
   },
   Subscription: {
     ADD_TO_CART_SUB: {
