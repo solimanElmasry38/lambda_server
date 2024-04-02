@@ -17,6 +17,9 @@ import { PubSub } from "graphql-subscriptions";
 import { add_to_cart_sub } from "./cart/subscribtion/addToCartSub";
 import { getCartCount } from "./cart/query/getCartCount";
 import { remove_product } from "./product/mutation/removeProduct";
+import { remove_offers } from "./offer/mutation/removeOffers";
+import { remove_users } from "./user/mutations/removeUsers";
+import { remove_categorys } from "./Category/mutation/removeCategory";
 export const pubSub = new PubSub();
 
 export const resolvers = {
@@ -38,7 +41,7 @@ export const resolvers = {
       get_cart_prodcuts(args, contx),
 
     IS_AVILABLE: (_: any, args, contx: {}) => is_avilable(args, contx),
-    GET_CART_COUNT:(_: any, args, contx: {})=>getCartCount(args, contx)
+    GET_CART_COUNT: (_: any, args, contx: {}) => getCartCount(args, contx),
   },
 
   Mutation: {
@@ -51,8 +54,12 @@ export const resolvers = {
     LOGIN: (_: any, args: Ilogin, contx: {}) => login(args, contx),
 
     ADD_TO_CART: (_: any, args, contx: {}) => add_to_cart(args, contx),
-    REMOVE_PRODUCT:(_: any, args, contx: {}) => remove_product(args, contx),
+    REMOVE_PRODUCT: (_: any, args, contx: {}) => remove_product(args, contx),
 
+    REMOVER_OFFERS: (_: any, args, contx: {}) => remove_offers(args, contx),
+    REMOVER_USERS: (_: any, args, contx: {}) => remove_users(args, contx),
+    REMOVER_CATEGORYS: (_: any, args, contx: {}) =>
+      remove_categorys(args, contx),
   },
   Subscription: {
     ADD_TO_CART_SUB: {

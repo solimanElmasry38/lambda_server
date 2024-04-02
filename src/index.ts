@@ -1,7 +1,7 @@
 import express from "express";
 import { ApolloServer } from "@apollo/server";
 import dotenv from "dotenv";
-import './conf/passport';
+// import './src/conf/passport';
 import cookieParser from "cookie-parser";
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
@@ -16,9 +16,12 @@ import { useServer } from "graphql-ws/lib/use/ws";
 import { createServer } from "http";
 import { execute, subscribe } from "graphql";
 import cors from "cors";
+// import { ApolloServerPluginLandingPageDisabled  } from "@apollo/server";
+
 
 dotenv.config();
 const app = express() ;
+
 const corsOpts = {
   origin: "*",
 
@@ -54,10 +57,12 @@ const wsServerCleanup = useServer(
 
 const apolloServer = new ApolloServer<BaseContext>({
   schema,
+  // playground: true,
+  introspection: true,
   plugins: [
 
     ApolloServerPluginDrainHttpServer({ httpServer }),
-
+    // ApolloServerPluginLandingPageDisabled (),
     {
       async serverWillStart() {
         return {

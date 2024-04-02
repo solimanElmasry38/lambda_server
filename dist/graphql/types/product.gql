@@ -1,0 +1,13 @@
+# import * from "./category.gql"
+type Product {
+  id: ID
+  name: String
+  img: String
+  price: Int
+  count: Int
+  is_available: Boolean
+  desc: String
+  categorys:category
+  coun_in_cart:Int
+  # Products_count:Int
+}
