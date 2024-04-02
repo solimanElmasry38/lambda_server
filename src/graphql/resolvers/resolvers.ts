@@ -20,6 +20,9 @@ import { remove_product } from "./product/mutation/removeProduct";
 import { remove_offers } from "./offer/mutation/removeOffers";
 import { remove_users } from "./user/mutations/removeUsers";
 import { remove_categorys } from "./Category/mutation/removeCategory";
+import { create_category } from "./Category/mutation/createCategory";
+import { create_product } from "./product/mutation/createProduct";
+import { create_offer } from "./offer/mutation/createOffer";
 export const pubSub = new PubSub();
 
 export const resolvers = {
@@ -60,6 +63,10 @@ export const resolvers = {
     REMOVER_USERS: (_: any, args, contx: {}) => remove_users(args, contx),
     REMOVER_CATEGORYS: (_: any, args, contx: {}) =>
       remove_categorys(args, contx),
+
+    CREATE_CATEGORY: (_: any, args, contx: {}) => create_category(args, contx),
+    CREATE_PRODUCT: (_: any, args, contx: {}) => create_product(args, contx),
+    CREATE_OFFER: (_: any, args, contx: {}) => create_offer(args, contx),
   },
   Subscription: {
     ADD_TO_CART_SUB: {

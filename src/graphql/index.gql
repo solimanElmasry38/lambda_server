@@ -44,6 +44,11 @@ type Mutation {
   REMOVER_USERS(input:removeProdInp):String
   REMOVER_CATEGORYS(input:removeProdInp):String
 
+CREATE_CATEGORY(input:createCategoryInp):String
+CREATE_PRODUCT(input:createProductInp):String
+CREATE_OFFER(input:createOfferInp):String
+
+
 }
 
 type Subscription {

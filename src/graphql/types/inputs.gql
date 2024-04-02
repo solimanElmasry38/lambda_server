@@ -77,3 +77,21 @@ input addToCartInp{
 input removeProdInp{
 Ids:[ID]
 }
+
+input createCategoryInp{
+    name: String
+    img: String
+
+}
+input createProductInp{
+   name: String
+    img: String
+    price: Int
+    count: Int
+    is_available: Boolean
+    desc: String
+}
+input createOfferInp{
+    name: String
+    img:String
+}
