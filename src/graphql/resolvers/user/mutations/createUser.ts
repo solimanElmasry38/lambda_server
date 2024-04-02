@@ -40,6 +40,7 @@ export const create_user = async (
       throw err;
     }
   } catch (err) {
+    
     throw err;
   }
 };

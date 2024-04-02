@@ -23,6 +23,9 @@ import { remove_categorys } from "./Category/mutation/removeCategory";
 import { create_category } from "./Category/mutation/createCategory";
 import { create_product } from "./product/mutation/createProduct";
 import { create_offer } from "./offer/mutation/createOffer";
+import { create_product_sub } from "./product/subscribtion/createProductSub";
+import { create_offer_sub } from "./offer/subscribtion/createOfferSub";
+import { create_category_sub } from "./Category/subscribtion/createCategorySub";
 export const pubSub = new PubSub();
 
 export const resolvers = {
@@ -72,7 +75,23 @@ export const resolvers = {
     ADD_TO_CART_SUB: {
       subscribe: () => {
         return add_to_cart_sub();
+
       },
     },
+    CREATE_PRODUCT_SUB: {
+      subscribe: () => {
+        return create_product_sub();
+      },
+    },
+  CREATE_OFFER_SUB: {
+    subscribe: () => {
+      return create_offer_sub();
+    },
+  },
+  CREATE_CATEGORY_SUB: {
+    subscribe: () => {
+      return create_category_sub();
+    },
+  },
   },
 };

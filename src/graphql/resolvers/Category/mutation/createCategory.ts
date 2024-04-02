@@ -1,16 +1,19 @@
 import { prisma } from "../../../../conf/prisma";
+import { pubSub } from "../../resolvers";
 
 export const create_category=async ({input},_contx)=>{
     const {name,img}= input;
 
     try{
-       const x = await prisma.category.create({
+       const createCategory = await prisma.category.create({
         data:{
             img,
             name
         }
        })
-console.log(JSON.stringify(x))
+       await pubSub.publish("create_categorySub", {
+        CREATE_CATEGORY_SUB:createCategory,
+      });
     }catch(err){
         throw err
     }

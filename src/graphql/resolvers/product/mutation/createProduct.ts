@@ -1,15 +1,19 @@
-
 import { prisma } from "../../../../conf/prisma";
+import { pubSub } from "../../resolvers";
 export const create_product = async ({ input }, _contx) => {
   const { name, img, price, count, is_available, desc } = input;
 
   try {
-    const x = await prisma.product.create({
+    const Createproduct = await prisma.product.create({
         data:{
             name, img, price, count, is_available, desc 
         }
        });
-    console.log(JSON.stringify(x));
+    
+  
+    await pubSub.publish("create_productSub", {
+      CREATE_PRODUCT_SUB: Createproduct,
+    });
   } catch (err) {
     throw err;
   }

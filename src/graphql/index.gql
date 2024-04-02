@@ -16,8 +16,8 @@ input IsAvInp {
 type CartCount {
   ProductsInCart: Int
 }
-input getCartCountInp{
-  usr_id:String
+input getCartCountInp {
+  usr_id: String
 }
 type Query {
   IS_AVILABLE(input: IsAvInp): Boolean
@@ -30,7 +30,7 @@ type Query {
   GET_CATEGORYS: [category]
   GET_PRODUCT_REVIEWS(input: GetReviewsInp): review
   GET_CART_PRODUCTS(input: getCartInp): String
-  GET_CART_COUNT(input:getCartCountInp):Int
+  GET_CART_COUNT(input: getCartCountInp): Int
 }
 type Mutation {
   ADD_TO_CART(input: addToCartInp): addToCart
@@ -38,19 +38,20 @@ type Mutation {
   VERIFY_EMAIL(input: verifyInp): Token
   LOGIN(input: LoginInp): Token
   RATE_PRODUCT(input: ReatingInp): String
-  REMOVE_PRODUCT(input:removeProdInp):String
-  
-  REMOVER_OFFERS(input:removeProdInp):String
-  REMOVER_USERS(input:removeProdInp):String
-  REMOVER_CATEGORYS(input:removeProdInp):String
+  REMOVE_PRODUCT(input: removeProdInp): String
 
-CREATE_CATEGORY(input:createCategoryInp):String
-CREATE_PRODUCT(input:createProductInp):String
-CREATE_OFFER(input:createOfferInp):String
+  REMOVER_OFFERS(input: removeProdInp): String
+  REMOVER_USERS(input: removeProdInp): String
+  REMOVER_CATEGORYS(input: removeProdInp): String
 
-
+  CREATE_CATEGORY(input: createCategoryInp): String
+  CREATE_PRODUCT(input: createProductInp): String
+  CREATE_OFFER(input: createOfferInp): String
 }
 
 type Subscription {
   ADD_TO_CART_SUB: CartCount
+  CREATE_PRODUCT_SUB: Product
+  CREATE_OFFER_SUB: Offer
+  CREATE_CATEGORY_SUB: category
 }
