@@ -48,7 +48,8 @@ export const resolvers = {
 
     IS_AVILABLE: (_: any, args, contx: {}) => is_avilable(args, contx),
     GET_CART_COUNT: (_: any, args, contx: {}) => getCartCount(args, contx),
-    MAIN_QUERY:()=>"server deployed secc"
+    MAIN_QUERY:()=>"server deployed secc",
+    MAIN_QU:()=>"ci pipline"
   },
 
   Mutation: {
