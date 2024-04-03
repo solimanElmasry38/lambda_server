@@ -16,7 +16,7 @@ import { useServer } from "graphql-ws/lib/use/ws";
 import { createServer } from "http";
 import { execute, subscribe } from "graphql";
 import cors from "cors";
-const { startStandaloneServer } = require("@apollo/server/standalone");
+import { startStandaloneServer } from "@apollo/server/standalone";
 
 // import { ApolloServerPluginLandingPageDisabled  } from "@apollo/server";
 
