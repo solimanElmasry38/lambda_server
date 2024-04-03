@@ -24,9 +24,11 @@ jobs:
 
       - name: Install Railway
         run: npm i -g @railway/cli --force
+
+
         
-      - name: echo Railway
-        run: echo ${{ secrets.RAILWAY_TOKEN }}
+      - name: link Railway
+        run: railway link
         
       - name: Deploy
         run: railway up
