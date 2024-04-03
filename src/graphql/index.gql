@@ -20,6 +20,7 @@ input getCartCountInp {
   usr_id: String
 }
 type Query {
+  MAIN_QUERY:String
   IS_AVILABLE(input: IsAvInp): Boolean
   USERS_GET(input: AuthInp): [User]
   USER_GET(input: AuthInp): User

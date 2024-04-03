@@ -16,6 +16,8 @@ import { useServer } from "graphql-ws/lib/use/ws";
 import { createServer } from "http";
 import { execute, subscribe } from "graphql";
 import cors from "cors";
+const { startStandaloneServer } = require("@apollo/server/standalone");
+
 // import { ApolloServerPluginLandingPageDisabled  } from "@apollo/server";
 
 
@@ -77,14 +79,26 @@ const apolloServer = new ApolloServer<BaseContext>({
 
 (async function () {
  
-  await apolloServer.start().then((res) => {
-    console.log(`🚀 Server ready at ${res}`);
+  // await apolloServer.start().then((res) => {
+  //   console.log(`🚀 Server ready at ${res}`);
+  // });
+  // console.log("startyerd  ")
+  const apollo_port =+process.env.PORT! ;
+  const { url } = await startStandaloneServer(apolloServer, {
+   
+    listen: {
+      port: apollo_port|| 4000,
+    },
   });
-  console.log("startyerd  ")
+
+  console.log(`
+      🚀  Server is running
+      📭  Query at ${url}
+    `);
   app.use("/graphql", bodyParser.json(), expressMiddleware(apolloServer));
 })();
 
-httpServer.listen({ port: 8888 }, () => {
+httpServer.listen({ port: 8000 }, () => {
   console.log(`🚀 Query endpoint ready at http://localhost:8888/graphql`);
   console.log(`🚀 Subscription endpoint ready at ws://localhost:8888/graphql`);
 });
