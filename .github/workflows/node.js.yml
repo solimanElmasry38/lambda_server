@@ -23,7 +23,7 @@ jobs:
       
 
       - name: Install Railway
-        run: npm i -g @railway/cli
+        run: npm i -g @railway/cli --force
 
       - name: Deploy
         run: railway up
