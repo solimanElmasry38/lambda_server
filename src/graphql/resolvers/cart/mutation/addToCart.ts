@@ -91,10 +91,12 @@ export const add_to_cart = async ({ input }: any, _contx: {}) => {
             ProductsInCart: allProductInCart,
           },
         });
-        console.log(allProductInCart)
-        console.log("sub fired")
+        const cartLength = cart?.product.reduce((total, item) => {
+          return total + item.coun_in_cart;
+        }, 0);
         return {
           availability: true,
+          cartLength
         };
       }
     }

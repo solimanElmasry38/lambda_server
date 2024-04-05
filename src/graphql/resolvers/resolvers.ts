@@ -43,7 +43,7 @@ export const resolvers = {
     GET_PRODUCT_REVIEWS: (_: any, args: any, contx: {}) =>
       get_review(args, contx),
 
-    GET_CART_PRODUCTS: (_: any, args, contx: {}) =>
+      CART_PRODUCTS_GET: (_: any, args, contx: {}) =>
       get_cart_prodcuts(args, contx),
 
     IS_AVILABLE: (_: any, args, contx: {}) => is_avilable(args, contx),

@@ -1,5 +1,5 @@
 import { prisma } from "../../../../conf/prisma";
-import { pubSub } from "../../resolvers";
+// import { pubSub } from "../../resolvers";
 
 export const get_cart_prodcuts = async ({ input }, _contx) => {
   const { usr_id } = input;
@@ -20,15 +20,13 @@ export const get_cart_prodcuts = async ({ input }, _contx) => {
       return total + item.coun_in_cart;
     }, 0);
 
-    await pubSub.publish("add_toCartSub", {
-      ADD_TO_CART_SUB: {
-        ProductsInCart: allProductInCart,
-      },
-    });
-    console.log(allProductInCart)
-
-    console.log("sub fired")
-
+    // await pubSub.publish("add_toCartSub", {
+    //   ADD_TO_CART_SUB: {
+    //     ProductsInCart: allProductInCart,
+    //   },
+    // });
+    
+console.log("us  "+allProductInCart)
     return {
       products: cart?.product,
       TotalProductInCart,

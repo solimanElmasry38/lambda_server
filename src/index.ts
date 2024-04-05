@@ -18,7 +18,6 @@ import { execute, subscribe } from "graphql";
 import cors from "cors";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
-// import { ApolloServerPluginLandingPageDisabled  } from "@apollo/server";
 
 
 dotenv.config();

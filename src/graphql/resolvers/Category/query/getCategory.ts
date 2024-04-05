@@ -32,6 +32,7 @@ export const get_category = async ({ input }: IgetCategory, _contx: {}) => {
         },
       });
 
+     
       return result;
     } catch (err) {
       throw err;

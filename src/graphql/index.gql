@@ -9,6 +9,8 @@
 
 type addToCart {
   availability: Boolean
+  cartLength:Int
+
 }
 input IsAvInp {
   productId: String
@@ -18,6 +20,10 @@ type CartCount {
 }
 input getCartCountInp {
   usr_id: String
+}
+type cartPoducts {
+  products: [Product]
+  TotalProductInCart:Int
 }
 type Query {
   MAIN_QUERY:String
@@ -31,7 +37,7 @@ type Query {
   GET_CATEGORY(input: CategInp): category
   GET_CATEGORYS: [category]
   GET_PRODUCT_REVIEWS(input: GetReviewsInp): review
-  GET_CART_PRODUCTS(input: getCartInp): String
+  CART_PRODUCTS_GET(input: getCartInp): cartPoducts
   GET_CART_COUNT(input: getCartCountInp): Int
 }
 type Mutation {
