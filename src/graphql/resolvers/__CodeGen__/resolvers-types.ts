@@ -16,31 +16,29 @@ export type Scalars = {
   DateTime: { input: any; output: any; }
 };
 
-export type AddCrtInp = {
-  product_id?: InputMaybe<Scalars['ID']['input']>;
-  token?: InputMaybe<Scalars['String']['input']>;
-  usr_id?: InputMaybe<Scalars['ID']['input']>;
-};
-
 export type AuthInp = {
-  id?: InputMaybe<Scalars['ID']['input']>;
+  input:{
+    id?: InputMaybe<Scalars['ID']['input']>;
   token?: InputMaybe<Scalars['String']['input']>;
+  }
 };
 
 export type Cart = {
   __typename?: 'Cart';
+  ProductId?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['ID']['output']>;
+  number?: Maybe<Scalars['Int']['output']>;
+  product?: Maybe<Array<Maybe<Product>>>;
+  user_id?: Maybe<Scalars['String']['output']>;
+};
+
+export type CartCount = {
+  __typename?: 'CartCount';
+  ProductsInCart?: Maybe<Scalars['Int']['output']>;
 };
 
 export type CategInp = {
   Categ_name?: InputMaybe<Scalars['String']['input']>;
-  usr_id?: InputMaybe<Scalars['ID']['input']>;
-  usr_token?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type CategsInp = {
-  usr_id?: InputMaybe<Scalars['ID']['input']>;
-  usr_token?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type GetReviewsInp = {
@@ -52,6 +50,10 @@ export type Id = {
   id?: Maybe<Scalars['ID']['output']>;
 };
 
+export type IsAvInp = {
+  productId?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type LoginInp = {
   email?: InputMaybe<Scalars['String']['input']>;
   password?: InputMaybe<Scalars['String']['input']>;
@@ -59,16 +61,38 @@ export type LoginInp = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  ADD_TO_CART?: Maybe<Scalars['String']['output']>;
+  ADD_TO_CART?: Maybe<AddToCart>;
+  CREATE_CATEGORY?: Maybe<Scalars['String']['output']>;
+  CREATE_OFFER?: Maybe<Scalars['String']['output']>;
+  CREATE_PRODUCT?: Maybe<Scalars['String']['output']>;
   LOGIN?: Maybe<Token>;
   RATE_PRODUCT?: Maybe<Scalars['String']['output']>;
+  REMOVER_CATEGORYS?: Maybe<Scalars['String']['output']>;
+  REMOVER_OFFERS?: Maybe<Scalars['String']['output']>;
+  REMOVER_USERS?: Maybe<Scalars['String']['output']>;
+  REMOVE_PRODUCT?: Maybe<Scalars['String']['output']>;
   USER_CREATE?: Maybe<Id>;
   VERIFY_EMAIL?: Maybe<Token>;
 };
 
 
 export type MutationAdd_To_CartArgs = {
-  input?: InputMaybe<AddCrtInp>;
+  input?: InputMaybe<AddToCartInp>;
+};
+
+
+export type MutationCreate_CategoryArgs = {
+  input?: InputMaybe<CreateCategoryInp>;
+};
+
+
+export type MutationCreate_OfferArgs = {
+  input?: InputMaybe<CreateOfferInp>;
+};
+
+
+export type MutationCreate_ProductArgs = {
+  input?: InputMaybe<CreateProductInp>;
 };
 
 
@@ -79,6 +103,26 @@ export type MutationLoginArgs = {
 
 export type MutationRate_ProductArgs = {
   input?: InputMaybe<ReatingInp>;
+};
+
+
+export type MutationRemover_CategorysArgs = {
+  input?: InputMaybe<RemoveProdInp>;
+};
+
+
+export type MutationRemover_OffersArgs = {
+  input?: InputMaybe<RemoveProdInp>;
+};
+
+
+export type MutationRemover_UsersArgs = {
+  input?: InputMaybe<RemoveProdInp>;
+};
+
+
+export type MutationRemove_ProductArgs = {
+  input?: InputMaybe<RemoveProdInp>;
 };
 
 
@@ -101,6 +145,7 @@ export type Offer = {
 export type Product = {
   __typename?: 'Product';
   categorys?: Maybe<Category>;
+  coun_in_cart?: Maybe<Scalars['Int']['output']>;
   count?: Maybe<Scalars['Int']['output']>;
   desc?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['ID']['output']>;
@@ -112,9 +157,14 @@ export type Product = {
 
 export type Query = {
   __typename?: 'Query';
+  CART_PRODUCTS_GET?: Maybe<CartPoducts>;
+  GET_CART_COUNT?: Maybe<Scalars['Int']['output']>;
   GET_CATEGORY?: Maybe<Category>;
   GET_CATEGORYS?: Maybe<Array<Maybe<Category>>>;
   GET_PRODUCT_REVIEWS?: Maybe<Review>;
+  IS_AVILABLE?: Maybe<Scalars['Boolean']['output']>;
+  MAIN_QU?: Maybe<Scalars['String']['output']>;
+  MAIN_QUERY?: Maybe<Scalars['String']['output']>;
   OFFERS_GET?: Maybe<Array<Maybe<Offer>>>;
   PRODUCTS_GET?: Maybe<Array<Maybe<Product>>>;
   PRODUCT_GET?: Maybe<Product>;
@@ -123,18 +173,28 @@ export type Query = {
 };
 
 
+export type QueryCart_Products_GetArgs = {
+  input?: InputMaybe<GetCartInp>;
+};
+
+
+export type QueryGet_Cart_CountArgs = {
+  input?: InputMaybe<GetCartCountInp>;
+};
+
+
 export type QueryGet_CategoryArgs = {
   input?: InputMaybe<CategInp>;
 };
 
 
-export type QueryGet_CategorysArgs = {
-  input?: InputMaybe<CategsInp>;
+export type QueryGet_Product_ReviewsArgs = {
+  input?: InputMaybe<GetReviewsInp>;
 };
 
 
-export type QueryGet_Product_ReviewsArgs = {
-  input?: InputMaybe<GetReviewsInp>;
+export type QueryIs_AvilableArgs = {
+  input?: InputMaybe<IsAvInp>;
 };
 
 
@@ -173,6 +233,14 @@ export enum Sort {
   Desc = 'desc'
 }
 
+export type Subscription = {
+  __typename?: 'Subscription';
+  ADD_TO_CART_SUB?: Maybe<CartCount>;
+  CREATE_CATEGORY_SUB?: Maybe<Category>;
+  CREATE_OFFER_SUB?: Maybe<Offer>;
+  CREATE_PRODUCT_SUB?: Maybe<Product>;
+};
+
 export type Token = {
   __typename?: 'Token';
   id?: Maybe<Scalars['ID']['output']>;
@@ -182,6 +250,7 @@ export type Token = {
 export type User = {
   __typename?: 'User';
   Cart?: Maybe<Cart>;
+  WishList?: Maybe<WishList>;
   email?: Maybe<Scalars['String']['output']>;
   id?: Maybe<Scalars['ID']['output']>;
   img?: Maybe<Scalars['String']['output']>;
@@ -199,11 +268,57 @@ export type UserInp = {
   user_name?: InputMaybe<Scalars['String']['input']>;
 };
 
+export type AddToCart = {
+  __typename?: 'addToCart';
+  availability?: Maybe<Scalars['Boolean']['output']>;
+  cartLength?: Maybe<Scalars['Int']['output']>;
+};
+
+export type AddToCartInp = {
+  Product_count?: InputMaybe<Scalars['Int']['input']>;
+  Product_id?: InputMaybe<Scalars['String']['input']>;
+  usr_id?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CartPoducts = {
+  __typename?: 'cartPoducts';
+  TotalProductInCart?: Maybe<Scalars['Int']['output']>;
+  products?: Maybe<Array<Maybe<Product>>>;
+};
+
 export type Category = {
   __typename?: 'category';
   id?: Maybe<Scalars['ID']['output']>;
+  img?: Maybe<Scalars['String']['output']>;
   name?: Maybe<Scalars['String']['output']>;
   product?: Maybe<Array<Maybe<Product>>>;
+};
+
+export type CreateCategoryInp = {
+  img?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CreateOfferInp = {
+  img?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type CreateProductInp = {
+  count?: InputMaybe<Scalars['Int']['input']>;
+  desc?: InputMaybe<Scalars['String']['input']>;
+  img?: InputMaybe<Scalars['String']['input']>;
+  is_available?: InputMaybe<Scalars['Boolean']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  price?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type GetCartCountInp = {
+  usr_id?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type GetCartInp = {
+  usr_id?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type OfferInp = {
@@ -221,6 +336,10 @@ export type ProdsInp = {
   orderByName?: InputMaybe<Sort>;
 };
 
+export type RemoveProdInp = {
+  Ids?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+};
+
 export type Review = {
   __typename?: 'review';
   review?: Maybe<Scalars['Int']['output']>;
@@ -229,6 +348,15 @@ export type Review = {
 export type VerifyInp = {
   id?: InputMaybe<Scalars['ID']['input']>;
   otp?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type WishList = {
+  __typename?: 'wishList';
+  ProductId?: Maybe<Scalars['String']['output']>;
+  id?: Maybe<Scalars['String']['output']>;
+  number?: Maybe<Scalars['Int']['output']>;
+  product?: Maybe<Array<Maybe<Product>>>;
+  user_id?: Maybe<Scalars['String']['output']>;
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -303,17 +431,17 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
-  AddCrtInp: AddCrtInp;
   AuthInp: AuthInp;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Cart: ResolverTypeWrapper<Cart>;
+  CartCount: ResolverTypeWrapper<CartCount>;
   CategInp: CategInp;
-  CategsInp: CategsInp;
   DateTime: ResolverTypeWrapper<Scalars['DateTime']['output']>;
   GetReviewsInp: GetReviewsInp;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Id: ResolverTypeWrapper<Id>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
+  IsAvInp: IsAvInp;
   LoginInp: LoginInp;
   Mutation: ResolverTypeWrapper<{}>;
   Offer: ResolverTypeWrapper<Offer>;
@@ -322,30 +450,41 @@ export type ResolversTypes = ResolversObject<{
   ReatingInp: ReatingInp;
   Sort: Sort;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
+  Subscription: ResolverTypeWrapper<{}>;
   Token: ResolverTypeWrapper<Token>;
   User: ResolverTypeWrapper<User>;
   UserInp: UserInp;
+  addToCart: ResolverTypeWrapper<AddToCart>;
+  addToCartInp: AddToCartInp;
+  cartPoducts: ResolverTypeWrapper<CartPoducts>;
   category: ResolverTypeWrapper<Category>;
+  createCategoryInp: CreateCategoryInp;
+  createOfferInp: CreateOfferInp;
+  createProductInp: CreateProductInp;
+  getCartCountInp: GetCartCountInp;
+  getCartInp: GetCartInp;
   offerInp: OfferInp;
   prodInp: ProdInp;
   prodsInp: ProdsInp;
+  removeProdInp: RemoveProdInp;
   review: ResolverTypeWrapper<Review>;
   verifyInp: VerifyInp;
+  wishList: ResolverTypeWrapper<WishList>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
-  AddCrtInp: AddCrtInp;
   AuthInp: AuthInp;
   Boolean: Scalars['Boolean']['output'];
   Cart: Cart;
+  CartCount: CartCount;
   CategInp: CategInp;
-  CategsInp: CategsInp;
   DateTime: Scalars['DateTime']['output'];
   GetReviewsInp: GetReviewsInp;
   ID: Scalars['ID']['output'];
   Id: Id;
   Int: Scalars['Int']['output'];
+  IsAvInp: IsAvInp;
   LoginInp: LoginInp;
   Mutation: {};
   Offer: Offer;
@@ -353,19 +492,39 @@ export type ResolversParentTypes = ResolversObject<{
   Query: {};
   ReatingInp: ReatingInp;
   String: Scalars['String']['output'];
+  Subscription: {};
   Token: Token;
   User: User;
   UserInp: UserInp;
+  addToCart: AddToCart;
+  addToCartInp: AddToCartInp;
+  cartPoducts: CartPoducts;
   category: Category;
+  createCategoryInp: CreateCategoryInp;
+  createOfferInp: CreateOfferInp;
+  createProductInp: CreateProductInp;
+  getCartCountInp: GetCartCountInp;
+  getCartInp: GetCartInp;
   offerInp: OfferInp;
   prodInp: ProdInp;
   prodsInp: ProdsInp;
+  removeProdInp: RemoveProdInp;
   review: Review;
   verifyInp: VerifyInp;
+  wishList: WishList;
 }>;
 
 export type CartResolvers<ContextType = any, ParentType extends ResolversParentTypes['Cart'] = ResolversParentTypes['Cart']> = ResolversObject<{
+  ProductId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  number?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  product?: Resolver<Maybe<Array<Maybe<ResolversTypes['Product']>>>, ParentType, ContextType>;
+  user_id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type CartCountResolvers<ContextType = any, ParentType extends ResolversParentTypes['CartCount'] = ResolversParentTypes['CartCount']> = ResolversObject<{
+  ProductsInCart?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
@@ -379,9 +538,16 @@ export type IdResolvers<ContextType = any, ParentType extends ResolversParentTyp
 }>;
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
-  ADD_TO_CART?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, Partial<MutationAdd_To_CartArgs>>;
+  ADD_TO_CART?: Resolver<Maybe<ResolversTypes['addToCart']>, ParentType, ContextType, Partial<MutationAdd_To_CartArgs>>;
+  CREATE_CATEGORY?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, Partial<MutationCreate_CategoryArgs>>;
+  CREATE_OFFER?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, Partial<MutationCreate_OfferArgs>>;
+  CREATE_PRODUCT?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, Partial<MutationCreate_ProductArgs>>;
   LOGIN?: Resolver<Maybe<ResolversTypes['Token']>, ParentType, ContextType, Partial<MutationLoginArgs>>;
   RATE_PRODUCT?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, Partial<MutationRate_ProductArgs>>;
+  REMOVER_CATEGORYS?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, Partial<MutationRemover_CategorysArgs>>;
+  REMOVER_OFFERS?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, Partial<MutationRemover_OffersArgs>>;
+  REMOVER_USERS?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, Partial<MutationRemover_UsersArgs>>;
+  REMOVE_PRODUCT?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType, Partial<MutationRemove_ProductArgs>>;
   USER_CREATE?: Resolver<Maybe<ResolversTypes['Id']>, ParentType, ContextType, Partial<MutationUser_CreateArgs>>;
   VERIFY_EMAIL?: Resolver<Maybe<ResolversTypes['Token']>, ParentType, ContextType, Partial<MutationVerify_EmailArgs>>;
 }>;
@@ -395,6 +561,7 @@ export type OfferResolvers<ContextType = any, ParentType extends ResolversParent
 
 export type ProductResolvers<ContextType = any, ParentType extends ResolversParentTypes['Product'] = ResolversParentTypes['Product']> = ResolversObject<{
   categorys?: Resolver<Maybe<ResolversTypes['category']>, ParentType, ContextType>;
+  coun_in_cart?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   count?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
   desc?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
@@ -406,14 +573,26 @@ export type ProductResolvers<ContextType = any, ParentType extends ResolversPare
 }>;
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
+  CART_PRODUCTS_GET?: Resolver<Maybe<ResolversTypes['cartPoducts']>, ParentType, ContextType, Partial<QueryCart_Products_GetArgs>>;
+  GET_CART_COUNT?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType, Partial<QueryGet_Cart_CountArgs>>;
   GET_CATEGORY?: Resolver<Maybe<ResolversTypes['category']>, ParentType, ContextType, Partial<QueryGet_CategoryArgs>>;
-  GET_CATEGORYS?: Resolver<Maybe<Array<Maybe<ResolversTypes['category']>>>, ParentType, ContextType, Partial<QueryGet_CategorysArgs>>;
+  GET_CATEGORYS?: Resolver<Maybe<Array<Maybe<ResolversTypes['category']>>>, ParentType, ContextType>;
   GET_PRODUCT_REVIEWS?: Resolver<Maybe<ResolversTypes['review']>, ParentType, ContextType, Partial<QueryGet_Product_ReviewsArgs>>;
+  IS_AVILABLE?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType, Partial<QueryIs_AvilableArgs>>;
+  MAIN_QU?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  MAIN_QUERY?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   OFFERS_GET?: Resolver<Maybe<Array<Maybe<ResolversTypes['Offer']>>>, ParentType, ContextType, Partial<QueryOffers_GetArgs>>;
   PRODUCTS_GET?: Resolver<Maybe<Array<Maybe<ResolversTypes['Product']>>>, ParentType, ContextType, Partial<QueryProducts_GetArgs>>;
   PRODUCT_GET?: Resolver<Maybe<ResolversTypes['Product']>, ParentType, ContextType, Partial<QueryProduct_GetArgs>>;
   USERS_GET?: Resolver<Maybe<Array<Maybe<ResolversTypes['User']>>>, ParentType, ContextType, Partial<QueryUsers_GetArgs>>;
   USER_GET?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType, Partial<QueryUser_GetArgs>>;
+}>;
+
+export type SubscriptionResolvers<ContextType = any, ParentType extends ResolversParentTypes['Subscription'] = ResolversParentTypes['Subscription']> = ResolversObject<{
+  ADD_TO_CART_SUB?: SubscriptionResolver<Maybe<ResolversTypes['CartCount']>, "ADD_TO_CART_SUB", ParentType, ContextType>;
+  CREATE_CATEGORY_SUB?: SubscriptionResolver<Maybe<ResolversTypes['category']>, "CREATE_CATEGORY_SUB", ParentType, ContextType>;
+  CREATE_OFFER_SUB?: SubscriptionResolver<Maybe<ResolversTypes['Offer']>, "CREATE_OFFER_SUB", ParentType, ContextType>;
+  CREATE_PRODUCT_SUB?: SubscriptionResolver<Maybe<ResolversTypes['Product']>, "CREATE_PRODUCT_SUB", ParentType, ContextType>;
 }>;
 
 export type TokenResolvers<ContextType = any, ParentType extends ResolversParentTypes['Token'] = ResolversParentTypes['Token']> = ResolversObject<{
@@ -424,6 +603,7 @@ export type TokenResolvers<ContextType = any, ParentType extends ResolversParent
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = ResolversObject<{
   Cart?: Resolver<Maybe<ResolversTypes['Cart']>, ParentType, ContextType>;
+  WishList?: Resolver<Maybe<ResolversTypes['wishList']>, ParentType, ContextType>;
   email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
   img?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
@@ -435,8 +615,21 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type AddToCartResolvers<ContextType = any, ParentType extends ResolversParentTypes['addToCart'] = ResolversParentTypes['addToCart']> = ResolversObject<{
+  availability?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+  cartLength?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
+export type CartPoductsResolvers<ContextType = any, ParentType extends ResolversParentTypes['cartPoducts'] = ResolversParentTypes['cartPoducts']> = ResolversObject<{
+  TotalProductInCart?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  products?: Resolver<Maybe<Array<Maybe<ResolversTypes['Product']>>>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type CategoryResolvers<ContextType = any, ParentType extends ResolversParentTypes['category'] = ResolversParentTypes['category']> = ResolversObject<{
   id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
+  img?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   product?: Resolver<Maybe<Array<Maybe<ResolversTypes['Product']>>>, ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -447,17 +640,31 @@ export type ReviewResolvers<ContextType = any, ParentType extends ResolversParen
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
+export type WishListResolvers<ContextType = any, ParentType extends ResolversParentTypes['wishList'] = ResolversParentTypes['wishList']> = ResolversObject<{
+  ProductId?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  number?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  product?: Resolver<Maybe<Array<Maybe<ResolversTypes['Product']>>>, ParentType, ContextType>;
+  user_id?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+}>;
+
 export type Resolvers<ContextType = any> = ResolversObject<{
   Cart?: CartResolvers<ContextType>;
+  CartCount?: CartCountResolvers<ContextType>;
   DateTime?: GraphQLScalarType;
   Id?: IdResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Offer?: OfferResolvers<ContextType>;
   Product?: ProductResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  Subscription?: SubscriptionResolvers<ContextType>;
   Token?: TokenResolvers<ContextType>;
   User?: UserResolvers<ContextType>;
+  addToCart?: AddToCartResolvers<ContextType>;
+  cartPoducts?: CartPoductsResolvers<ContextType>;
   category?: CategoryResolvers<ContextType>;
   review?: ReviewResolvers<ContextType>;
+  wishList?: WishListResolvers<ContextType>;
 }>;
 

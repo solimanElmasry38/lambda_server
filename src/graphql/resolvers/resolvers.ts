@@ -32,7 +32,7 @@ export const resolvers = {
   DateTime: DateTimeResolver,
   Query: {
     USERS_GET: (_: any, args: IgetUsers, contx: {}) => get_users(args, contx),
-    USER_GET: (_: any, args: IgetUsers, contx: {}) => get_user(args, contx),
+    USER_GET: (_: any, args:any, contx: {}) => get_user(args, contx),
     OFFERS_GET: (_: any, args: IgetOffers, contx: {}) =>
       get_offers(args, contx),
     PRODUCTS_GET: (_, args, contx) => get_products(args, contx),

@@ -1,4 +1,7 @@
 # import * from "./cart.gql"
+# import * from "./product.gql"
+# import * from "./wishList.gql"
+
 scalar DateTime
 type User {
   id: ID
@@ -10,6 +13,7 @@ type User {
   joined_at: DateTime
   last_update: DateTime
   Cart: Cart
+  WishList:wishList
 }
 
                               

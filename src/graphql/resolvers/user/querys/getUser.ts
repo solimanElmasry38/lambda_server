@@ -1,42 +1,34 @@
 import { prisma } from "../../../../conf/prisma";
-// import  redisClient  from "../../../../conf/redis";  
-import { validate_token } from "../../../../utils/token";
 
-export interface IgetUsers {
-  input: {
-    id: string;
-    token: string;
-  };
-}
-type Tusr = {
-  id: string;
-  user_name: string;
-  email: string;
-  password: string;
-  otp: string;
-  img: string;
-  is_admin: boolean;
-  joined_at: Date;
-  last_update: Date;
-};
+import { validate_token } from "../../../../utils/token";
+import { AuthInp, User } from "../../__CodeGen__/resolvers-types";
+
 export const get_user = async (
-  { input }: IgetUsers,
+  { input }: AuthInp,
   _contx: {}
-): Promise<number | Tusr> => {
+): Promise<User> => {
   const { id, token } = input;
 
-  if (validate_token(token, id)) {
+  if (validate_token(token!, id!)) {
     try {
       const usr = await prisma.user.findFirst({
         where: {
-          id,
+          id: id!,
+        },
+        include: {
+          WishList: {
+            include: { product: true },
+          },
+          Cart: {
+            include: { product: true },
+          },
         },
       });
       if (usr) {
-        // await redisClient.set("usr_data", JSON.stringify(usr));
         return usr;
+      } else {
+        throw new Error("not found user");
       }
-      return 0;
     } catch (err) {
       throw err;
     }

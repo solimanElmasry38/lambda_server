@@ -1,9 +1,8 @@
 # import * from "./product.gql"
-type Cart{
-   id: ID
+type  wishList{
+    id: String
         ProductId: String
         user_id: String
         number: Int
         product:[Product]
 }
-

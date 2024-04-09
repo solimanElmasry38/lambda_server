@@ -20,6 +20,7 @@ model User {
   last_update DateTime        @updatedAt
   Rating      ProductReview[]
   Cart        Cart?
+  WishList    WishList?
 }
 
 model Product {
@@ -35,8 +36,11 @@ model Product {
   category_id String?
   categorys   Category? @relation(fields: [category_id], references: [id], name: "CategoryName")
 
-  cart_id String?
-  Cart    Cart?   @relation(fields: [cart_id], references: [id], name: "CartId")
+  cart_id    String?
+  wishListId String?
+
+  Cart     Cart?     @relation(fields: [cart_id], references: [id], name: "CartId")
+  WishList WishList? @relation(fields: [wishListId], references: [id], name: "WishListId")
 
   ratings ProductReview[]
 }
@@ -45,6 +49,15 @@ model Cart {
   id        String    @id @default(uuid())
   ProductId String    @default("")
   product   Product[] @relation(name: "CartId")
+  user_id   String    @unique
+  user      User      @relation(fields: [user_id], references: [id])
+  number    Int       @default(0)
+}
+
+model WishList {
+  id        String    @id @default(uuid())
+  ProductId String    @default("")
+  product   Product[] @relation(name: "WishListId")
   user_id   String    @unique
   user      User      @relation(fields: [user_id], references: [id])
   number    Int       @default(0)
