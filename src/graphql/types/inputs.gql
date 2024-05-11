@@ -74,6 +74,11 @@ input addToCartInp{
   usr_id:String
  Product_count:Int
 }
+input addToWishListInp{
+  Product_id:String
+  usr_id:String
+ 
+}
 input removeProdInp{
 Ids:[ID]
 }
@@ -94,4 +99,11 @@ input createProductInp{
 input createOfferInp{
     name: String
     img:String
+}
+input CategsInp{
+  takeCount:Int
+}
+input isInWishInp{
+  productId:ID
+  usetId:ID
 }

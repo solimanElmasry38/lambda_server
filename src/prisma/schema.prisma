@@ -40,7 +40,7 @@ model Product {
   wishListId String?
 
   Cart     Cart?     @relation(fields: [cart_id], references: [id], name: "CartId")
-  WishList WishList? @relation(fields: [wishListId], references: [id], name: "WishListId")
+  wishList WishList? @relation(fields: [wishListId], references: [id], name: "WishListProduct")
 
   ratings ProductReview[]
 }
@@ -56,11 +56,13 @@ model Cart {
 
 model WishList {
   id        String    @id @default(uuid())
-  ProductId String    @default("")
-  product   Product[] @relation(name: "WishListId")
+  ProductId String
+  product   Product[] @relation(name: "WishListProduct")
   user_id   String    @unique
   user      User      @relation(fields: [user_id], references: [id])
   number    Int       @default(0)
+
+  // @@id([user_id, ProductId])
 }
 
 model ProductReview {

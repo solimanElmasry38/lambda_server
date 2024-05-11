@@ -35,13 +35,16 @@ type Query {
   PRODUCTS_GET(input: prodsInp): [Product]
   PRODUCT_GET(input: prodInp): Product
   GET_CATEGORY(input: CategInp): category
-  GET_CATEGORYS: [category]
+  GET_CATEGORYS(input:CategsInp): [category]
   GET_PRODUCT_REVIEWS(input: GetReviewsInp): review
   CART_PRODUCTS_GET(input: getCartInp): cartPoducts
   GET_CART_COUNT(input: getCartCountInp): Int
+  IS_IN_WISH_LIST(input: isInWishInp):Boolean
 }
 type Mutation {
   ADD_TO_CART(input: addToCartInp): addToCart
+  ADD_TO_WISH_LIST(input: addToWishListInp): String
+
   USER_CREATE(input: UserInp): Id
   VERIFY_EMAIL(input: verifyInp): Token
   LOGIN(input: LoginInp): Token

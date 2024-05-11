@@ -26,6 +26,8 @@ import { create_offer } from "./offer/mutation/createOffer";
 import { create_product_sub } from "./product/subscribtion/createProductSub";
 import { create_offer_sub } from "./offer/subscribtion/createOfferSub";
 import { create_category_sub } from "./Category/subscribtion/createCategorySub";
+import { add_to_wish_list } from "./wishList/mutation/addToWishList";
+import {is_in_wish_list}from"./wishList/query/isInWishList"
 export const pubSub = new PubSub();
 
 export const resolvers = {
@@ -39,7 +41,7 @@ export const resolvers = {
     PRODUCT_GET: (_: any, args: IgetProduct, contx: {}) =>
       get_product(args, contx),
     GET_CATEGORY: (_: any, args: any, contx: {}) => get_category(args, contx),
-    GET_CATEGORYS: (_: any, _args: any, contx: {}) => get_categorys(contx),
+    GET_CATEGORYS: (_: any, args: any, contx: {}) => get_categorys(args,contx),
     GET_PRODUCT_REVIEWS: (_: any, args: any, contx: {}) =>
       get_review(args, contx),
 
@@ -49,7 +51,8 @@ export const resolvers = {
     IS_AVILABLE: (_: any, args, contx: {}) => is_avilable(args, contx),
     GET_CART_COUNT: (_: any, args, contx: {}) => getCartCount(args, contx),
     MAIN_QUERY:()=>"server deployed secc",
-    MAIN_QU:()=>"ci pipline"
+    MAIN_QU:()=>"ci pipline",
+    IS_IN_WISH_LIST:(_: any, args, contx: {})=>is_in_wish_list(args, contx)
   },
 
   Mutation: {
@@ -72,6 +75,7 @@ export const resolvers = {
     CREATE_CATEGORY: (_: any, args, contx: {}) => create_category(args, contx),
     CREATE_PRODUCT: (_: any, args, contx: {}) => create_product(args, contx),
     CREATE_OFFER: (_: any, args, contx: {}) => create_offer(args, contx),
+    ADD_TO_WISH_LIST: (_: any, args, contx: {}) => add_to_wish_list(args, contx),
   },
   Subscription: {
     ADD_TO_CART_SUB: {

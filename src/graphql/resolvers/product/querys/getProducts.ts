@@ -15,6 +15,7 @@ export const get_products = async ({ input }, _contxt): Promise<Tproduct[]> => {
 
   try {
     const product = await prisma.product.findMany({
+      
       where: {
         name: { contains: filter },
         category_id:byCategory
