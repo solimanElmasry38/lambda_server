@@ -107,3 +107,12 @@ input isInWishInp{
   productId:ID
   usetId:ID
 }
+
+input removeFromWishListInp{
+   Product_id:String
+  usr_id:String
+}
+
+input getWishListInp{
+  usr_id:String
+}

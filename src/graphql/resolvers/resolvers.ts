@@ -28,6 +28,8 @@ import { create_offer_sub } from "./offer/subscribtion/createOfferSub";
 import { create_category_sub } from "./Category/subscribtion/createCategorySub";
 import { add_to_wish_list } from "./wishList/mutation/addToWishList";
 import {is_in_wish_list}from"./wishList/query/isInWishList"
+import { remove_from_wish_list } from "./wishList/mutation/removeFromWishList";
+import { get_wish_list } from "./wishList/query/getWishList";
 export const pubSub = new PubSub();
 
 export const resolvers = {
@@ -52,7 +54,8 @@ export const resolvers = {
     GET_CART_COUNT: (_: any, args, contx: {}) => getCartCount(args, contx),
     MAIN_QUERY:()=>"server deployed secc",
     MAIN_QU:()=>"ci pipline",
-    IS_IN_WISH_LIST:(_: any, args, contx: {})=>is_in_wish_list(args, contx)
+    IS_IN_WISH_LIST:(_: any, args, contx: {})=>is_in_wish_list(args, contx),
+    GET_WISH_LIST:(_: any, args, contx: {})=>get_wish_list(args, contx)
   },
 
   Mutation: {
@@ -76,6 +79,7 @@ export const resolvers = {
     CREATE_PRODUCT: (_: any, args, contx: {}) => create_product(args, contx),
     CREATE_OFFER: (_: any, args, contx: {}) => create_offer(args, contx),
     ADD_TO_WISH_LIST: (_: any, args, contx: {}) => add_to_wish_list(args, contx),
+    REMOVE_FROM_WISH_LIST:(_: any, args, contx: {})=> remove_from_wish_list(args, contx)
   },
   Subscription: {
     ADD_TO_CART_SUB: {
