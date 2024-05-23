@@ -30,6 +30,7 @@ import { add_to_wish_list } from "./wishList/mutation/addToWishList";
 import {is_in_wish_list}from"./wishList/query/isInWishList"
 import { remove_from_wish_list } from "./wishList/mutation/removeFromWishList";
 import { get_wish_list } from "./wishList/query/getWishList";
+import { remove_form_cart } from "./cart/mutation/removeFromCart";
 export const pubSub = new PubSub();
 
 export const resolvers = {
@@ -79,7 +80,8 @@ export const resolvers = {
     CREATE_PRODUCT: (_: any, args, contx: {}) => create_product(args, contx),
     CREATE_OFFER: (_: any, args, contx: {}) => create_offer(args, contx),
     ADD_TO_WISH_LIST: (_: any, args, contx: {}) => add_to_wish_list(args, contx),
-    REMOVE_FROM_WISH_LIST:(_: any, args, contx: {})=> remove_from_wish_list(args, contx)
+    REMOVE_FROM_WISH_LIST:(_: any, args, contx: {})=> remove_from_wish_list(args, contx),
+    REMOVE_FROM_CART:(_: any, args, contx: {})=> remove_form_cart(args, contx)
   },
   Subscription: {
     ADD_TO_CART_SUB: {
@@ -105,3 +107,5 @@ export const resolvers = {
   },
   },
 };
+
+
